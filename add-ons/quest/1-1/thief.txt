@@ -1,4 +1,4 @@
-automacro LeaveTrainingGround {
+automacro LeaveTrainingGround_Thief {
 	JobID 0
 	InMap new_1-3
 	JobLevel = 10
