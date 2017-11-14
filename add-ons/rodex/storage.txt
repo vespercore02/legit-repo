@@ -88,6 +88,16 @@ automacro RodexBugLeg {
 	call StorageRodex
 }
 
+automacro RodexOBB {
+	Zeny >= 2500
+	InStorage "Old Blue Box" >= 50
+	StorageOpened 1
+	exclusive 1
+	macro_delay 2
+	timeout 20
+	call StorageRodex
+}
+
 macro StorageRodex {
 	$itemName = $.InStorageLast
 		

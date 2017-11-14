@@ -22,13 +22,9 @@
 !include ..\add-ons\utilities\events\grinding-spot.txt
 !include ..\add-ons\utilities\events\teleport.txt
 !include ..\add-ons\utilities\events\block-spammer.txt
+#!include ..\add-ons\utilities\events\holy-water.txt
 
-# Training Grounds Quest
+# Quest
 #!include ..\add-ons\quest\novice.txt
-
-# First Jobs
 #!include ..\add-ons\quest\1-1\thief.txt
-
-# Second Jobs
-#!include ..\add-ons\quest\2-1\knight.txt 
 #!include ..\add-ons\quest\2-2\rogue.txt

@@ -57,6 +57,23 @@ sub add_new_key {
 # Commands
 #_____________________________________________________________________
 
+macro setStorage {
+	[	
+		do conf saveMap prt_fild05
+		do conf storageAuto $storageOption
+		do conf storageAuto_npc prt_fild05 290 224
+		do conf storageAuto_npc_steps c r1 n
+		do conf autoMoveOnDeath 1
+		do conf autoMoveOnDeath_x &rand(260,280)
+		do conf autoMoveOnDeath_y &rand(200,220)
+		do conf autoMoveOnDeath_map prt_fild05
+	]
+	[
+		do conf sellAuto $sellOption
+		do conf sellAuto_npc prt_fild05 290 221 
+	]
+}
+
 macro setConfig {
 	[
 		do conf -f killSteal 1
@@ -130,12 +147,12 @@ macro setStats {
 }
 
 macro setReceiver1 {
-	$receiver = 
+	$receiver = none
 	do conf rodexReceiver $receiver
 }
 
 macro setReceiver2 {
-	$receiver = 
+	$receiver = none
 	do conf rodexReceiver $receiver
 }
 
