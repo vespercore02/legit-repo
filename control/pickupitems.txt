@@ -1,12 +1,12 @@
 ## Worthless Items ##
-Novice Guard -1
-Novice Slippers -1
-Somber Novice Hood -1
-Tattered Novice Ninja Suit -1
-Novice Adventurer's Suit [1] -1
-Novice Cutter [3] -1
-Novice Main-Gauche -1
-Novice False Eggshell -1
+Novice Guard 0
+Novice Slippers 0
+Somber Novice Hood 0
+Tattered Novice Ninja Suit 0
+Novice Adventurer's Suit [1] 0
+Novice Cutter [3] 0
+Novice Main-Gauche 0
+Novice False Eggshell 0
 Cotton Shirt -1
 Cotton Shirt [1] -1
 Knife [3] -1
