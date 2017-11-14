@@ -35,21 +35,21 @@ automacro TalkToFinalTester_Acolyte {
 			
 			do conf attackAuto 2
 			do conf statsAddAuto 1
-			do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
+			#do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
 			do conf statsAddAuto_dontUseBonus 1
 			do conf statsAdd_over_99 1
 			
 			do conf skillsAddAuto 1
-			do conf skillsAddAuto_list AL_HEAL 5, AL_INCAGI 5, AL_DP 5, AL_BLESSING 10, AL_INCAGI 10, AL_RUWACH 1, AL_TELEPORT 2, AL_DEMONBANE 5, AL_WARP 2, AL_ANGELUS 10 
+			#do conf skillsAddAuto_list AL_HEAL 5, AL_INCAGI 5, AL_DP 5, AL_BLESSING 10, AL_INCAGI 10, AL_RUWACH 1, AL_TELEPORT 2, AL_DEMONBANE 5, AL_WARP 2, AL_ANGELUS 10 
 		]
 	}
 }
 
 automacro SetAcolyteQuest {
 	QuestInactive 1001, 1002, 1003
+	ConfigKey jobQuest Acolyte
 	JobID 0
 	InMap prt_church
-	ConfigKey jobQuest Acolyte
 	exclusive 1
 	run-once 1
 	call {
@@ -57,23 +57,25 @@ automacro SetAcolyteQuest {
 		pause &rand(2,4)
 		do talk &npc(184 41)
 		do talk resp 0
-		do talk resp 0
+		do conf jobQuest FindPriest
 	}
 }
 
 automacro FindPriest {
 	QuestActive 1001, 1002, 1003
-	JobID 6
-	JobLevel = 50
-    CurrentHP >= 80%
+	ConfigKey jobQuest FindPriest
+	JobID 0
+	JobLevel = 10
 	exclusive 1
 	call {
+		
 		[
 			do conf lockMap none
 			do conf attackAuto -1
 			do conf autoResponse 1
 			do conf autoTalkCont 1
 		]
+		
 		switch ($.QuestActiveLastID) {
 			case (= 1001) { 
 				do conf jobQuest TalkToRubalkabara
@@ -89,7 +91,7 @@ automacro FindPriest {
 			}
 		}
 	}
-	timeout 180
+	timeout 60
 }
 
 macro TalkWithPriest {
