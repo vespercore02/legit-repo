@@ -13,7 +13,7 @@ automacro AddSkillPoints {
 			log =========================================================
 		]
 		[
-			do conf -f rogueQuest none
+			do conf -f jobQuest none
 			do conf skillsAddAuto 1
 			do conf skillsAddAuto_list NV_BASIC 9, TF_DOUBLE 10, TF_MISS 10, TF_STEAL 10, TF_HIDING 10, TF_POISON 8, TF_DETOXIFY 1
 		]
@@ -44,7 +44,7 @@ automacro Thief50 {
 			]
 			
 			do move morocc
-			do conf -f rogueQuest MoveToRogueQuest
+			do conf -f jobQuest MoveTojobQuest
 			
 			if ($.map == morocc) {
 				log === Saving to Morocc === 
@@ -56,7 +56,7 @@ automacro Thief50 {
 			lock Thief50
 		
 		:AlreadyOnMorocc
-			do conf -f rogueQuest MoveToRogueQuest
+			do conf -f jobQuest MoveTojobQuest
 			do move morocc &rand(150,154) &rand(91,95)
 			do talknpc 156 97 c r0 n
 			do conf saveMap morocc
@@ -65,8 +65,8 @@ automacro Thief50 {
 	timeout 60
 }
 
-automacro MoveToRogueQuest {
-	ConfigKey rogueQuest MoveToRogueQuest
+automacro MoveTojobQuest {
+	ConfigKey jobQuest MoveTojobQuest
 	QuestInactive 2017
 	NpcNotNear /Rogue Guildsman/
 	InMap morocc,in_rogue
@@ -76,13 +76,13 @@ automacro MoveToRogueQuest {
 	macro_delay 1
 	call {
 		do move in_rogue &rand(361,366) &rand(112,117)
-		do conf rogueQuest TalkToGuildsman
+		do conf jobQuest TalkToGuildsman
 	}
 	timeout 30
 }
 
 automacro TalkToGuildsman {
-	ConfigKey rogueQuest TalkToGuildsman
+	ConfigKey jobQuest TalkToGuildsman
 	QuestInactive 2017
 	NpcNear /Rogue Guildsman/
 	InMap in_rogue
@@ -119,12 +119,12 @@ automacro TalkToMrSmith {
 	call {
 		do move in_rogue &rand(370,373) &rand(20,24)
 		do talk &npc(376 23) #Smith
-		do conf rogueQuest QuestItems
+		do conf jobQuest QuestItems
 	}
 }
 
 automacro QuestItems {
-	ConfigKey rogueQuest QuestItems
+	ConfigKey jobQuest QuestItems
 	QuestActive 2020
 	JobID 6
 	JobLevel = 50
@@ -141,7 +141,7 @@ automacro QuestItems {
 			do conf lockMap none
 			do conf attackAuto 0
 			do conf route_randomWalk 0
-			do conf rogueQuest GiveQuestItems
+			do conf jobQuest GiveQuestItems
 		]
 		do move in_rogue &rand(370,373) &rand(20,24)
 		
@@ -150,7 +150,7 @@ automacro QuestItems {
 		:farmYellowHerb
 			log === Hunt Yellow Herbs ===
 			[
-				do conf rogueQuest farmYellowHerb
+				do conf jobQuest farmYellowHerb
 				do conf lockMap moc_fild14
 				do conf route_randomWalk 1
 				do conf attackAuto 2
@@ -160,7 +160,7 @@ automacro QuestItems {
 		:farmShell
 			log === Hunt Shells ===
 			[
-				do conf rogueQuest farmShell
+				do conf jobQuest farmShell
 				do conf lockMap moc_fild18
 				do conf route_randomWalk 1
 				do conf attackAuto 2
@@ -170,7 +170,7 @@ automacro QuestItems {
 		:farmLeg
 			log === Hunt Grasshopper's Leg ===
 			[
-				do conf rogueQuest farmLeg
+				do conf jobQuest farmLeg
 				do conf lockMap prt_fild07
 				do conf route_randomWalk 1
 				do conf attackAuto 2
@@ -180,7 +180,7 @@ automacro QuestItems {
 		:farmFootskin
 			log === Hunt Bear's Footskin ===
 			[
-				do conf rogueQuest farmFootskin
+				do conf jobQuest farmFootskin
 				do conf lockMap pay_fild07
 				do conf route_randomWalk 1
 				do conf attackAuto 2
@@ -191,51 +191,51 @@ automacro QuestItems {
 }
 
 automacro farmYellowHerb {
-	ConfigKey rogueQuest farmYellowHerb
+	ConfigKey jobQuest farmYellowHerb
 	InInventory "Yellow Herb" > 9
 	run-once 1
 	call {
 		do respawn
-		do conf rogueQuest QuestItems
+		do conf jobQuest QuestItems
 		release CheckQuestItems
 	}
 }
 
 automacro farmShell {
-	ConfigKey rogueQuest farmShell
+	ConfigKey jobQuest farmShell
 	InInventory "Shell" > 9
 	run-once 1
 	call {
 		do respawn
-		do conf rogueQuest QuestItems
+		do conf jobQuest QuestItems
 	 	release CheckQuestItems
 	}
 }
 
 automacro farmLeg {
-	ConfigKey rogueQuest farmLeg
+	ConfigKey jobQuest farmLeg
 	InInventory "Grasshopper's Leg" > 9
 	run-once 1
 	call {
 		do respawn
-		do conf rogueQuest QuestItems
+		do conf jobQuest QuestItems
 		release CheckQuestItems
 	}
 }
 
 automacro farmFootskin {
-	ConfigKey rogueQuest farmFootskin
+	ConfigKey jobQuest farmFootskin
 	InInventory "Bear's Footskin" > 9
 	run-once 1
 	call {
 		do respawn
-		do conf rogueQuest QuestItems
+		do conf jobQuest QuestItems
 		release CheckQuestItems
 	}
 }
 
 automacro GiveQuestItems {
-	ConfigKey rogueQuest GiveQuestItems
+	ConfigKey jobQuest GiveQuestItems
 	QuestActive 2020
 	NpcNear /Mr. Smith/
 	InMap in_rogue
@@ -260,15 +260,15 @@ automacro FindNPC {
 		]
 		switch ($.QuestActiveLastID) {
 			case (= 2022) { 
-				do conf rogueQuest TalkToAragham
+				do conf jobQuest TalkToAragham
 				call TalkWithCertainNpc "cmd_fild09 107 195" "1" "2" "1" "0"
 			}
 			case (= 2023) { 
-				do conf rogueQuest TalkToAntonio
+				do conf jobQuest TalkToAntonio
 				call TalkWithCertainNpc "cmd_fild04 304 180" "2" "1" "1" "2" 
 			}
 			case (= 2024) {
-				do conf rogueQuest TalkToHollgrehenn
+				do conf jobQuest TalkToHollgrehenn
 				call TalkWithCertainNpc "cmd_fild09 335 143" "0" "2" "4" "0" 
 			}
 		}
@@ -350,8 +350,8 @@ automacro RetakeLabyrinth {
 			log ======================================= =
 		]
 		do conf lockMap none
-		log Current rogueQuest: &config(rogueQuest)
-		switch (&config(rogueQuest)) {
+		log Current jobQuest: &config(jobQuest)
+		switch (&config(jobQuest)) {
 			case (= TalkToAragham) call TalkWithCertainNpc "cmd_fild09 107 195" "1" "2" "1" "0"  
 			case (= TalkToAntonio) call TalkWithCertainNpc "cmd_fild04 304 180" "2" "1" "1" "2"
 			case (= TalkToHollgrehenn) call TalkWithCertainNpc "cmd_fild09 335 143" "0" "2" "4" "0"
@@ -384,7 +384,7 @@ automacro FinalStep {
 		do move in_rogue &rand(361,366) &rand(112,117)
         do talk &npc(363 122)
         do eq Gladius [3]
-		do conf rogueQuest none
+		do conf jobQuest none
         do relog 3600
 	}
 	timeout 30

@@ -57,6 +57,7 @@ Novice Adventurer's Suit [1] 0 0 1
 Novice Cutter [3] 0 0 1
 Novice Main-Gauche 0 0 1
 Novice False Eggshell 0 0 1
+Novice Potion 0 0 0
 
 ##### HEAL/SUPPORT ITEMS #####
 # Adjust these to your needs

@@ -31,9 +31,9 @@ macro ChangeGrindMaps {
 			$LVL90 = mjolnir_10
 		}
 		case (== Acolyte) {
-			$LVL20 = pay_fild06 
-			$LVL40 = mjolnir_08
-			$LVL60 = gef_fild02
+			$LVL20 = pay_fild03 
+			$LVL40 = pay_fild06
+			$LVL60 = mjolnir_08
 		}
 		case (== Priest) {
 			$LVL90 = gef_fild11

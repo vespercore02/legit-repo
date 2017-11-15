@@ -12,34 +12,6 @@ automacro SetRodexReceiver {
     }
 }
 
-automacro SetJobClass {
-    priority 1
-	exclusive 1
-    timeout 10
-    overrideAI 1
-    CheckOnAI auto, manual, off
-    ConfigKeyNotExist jobClass
-    call {
-        $wantedkey = $.ConfigKeyNotExistLastKey
-        $keyValue = $.job
-        call AddNewKey
-    }
-}
-
-automacro SetBuildType {
-    priority 2
-	exclusive 1
-    timeout 10
-    overrideAI 1
-    CheckOnAI auto, manual, off
-    ConfigKeyNotExist buildType
-    call {
-        $wantedkey = $.ConfigKeyNotExistLastKey
-        $keyValue = none
-        call AddNewKey
-	}
-}
-
 macro AddNewKey {
 	log There is a missing key in config.txt
 	log The key is $wantedkey
@@ -56,6 +28,16 @@ sub add_new_key {
 #
 # Commands
 #_____________________________________________________________________
+
+macro setReceiver1 {
+	$receiver = none
+	do conf rodexReceiver $receiver
+}
+
+macro setReceiver2 {
+	$receiver = none
+	do conf rodexReceiver $receiver
+}
 
 macro setStorage {
 	[	
@@ -79,6 +61,8 @@ macro setConfig {
 		do conf -f killSteal 1
 		do conf pauseCharServer &rand(1,2)
 		do conf pauseMapServer &rand(1,2)
+		do conf attackAuto 2
+		do conf route_randomWalk 1
 		do conf allowedMaps none
 		do conf allowedMaps_reaction 0
 		do conf attackAuto_inLockOnly 2
@@ -99,61 +83,61 @@ macro setConfig {
 }
 
 macro setStats {
-	$currentJob = $.job	
-	if ($currentJob == Acolyte) {
-		[
-			do conf statsAddAuto 1
-			do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
-			do conf statsAddAuto_dontUseBonus 1
-			do conf statsAdd_over_99 1
+	switch ($.job) {
+		case (== Acolyte) {	
+			[
+				do conf statsAddAuto 1
+				do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
+				do conf statsAddAuto_dontUseBonus 1
+				do conf statsAdd_over_99 1
+				
+				do conf skillsAddAuto 1
+				do conf skillsAddAuto_list AL_HEAL 5, AL_INCAGI 5, AL_DP 5, AL_BLESSING 10, AL_INCAGI 10, AL_RUWACH 1, AL_TELEPORT 2, AL_DEMONBANE 5, AL_WARP 2, AL_ANGELUS 10 
+			]
+		}
+		case (== Priest) {
+			[
+				do conf statsAddAuto 1
+				do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
+				do conf statsAddAuto_dontUseBonus 1
+				do conf statsAdd_over_99 1
+				
+				do conf skillsAddAuto 1 
+				do conf skillsAddAuto_list PR_MACEMASTERY 10, PR_IMPOSITIO 5, PR_KYRIE 10
+			]	
+		}
+		case (== Monk) {
+			[
+				do conf statsAddAuto 1
+				do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
+				do conf statsAddAuto_dontUseBonus 1
+				do conf statsAdd_over_99 1
+				
+				do conf skillsAddAuto 1 
+				do conf skillsAddAuto_list none
+			]
+		}
+		case (== Rogue) {
+			[
+				do conf statsAddAuto 1
+				do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 40 agi, 30 str, 40 dex, 30 vit, 60 str, 80 agi, 20 luk
+				do conf statsAddAuto_dontUseBonus 1
+				do conf statsAdd_over_99 1
+				
+				do conf skillsAddAuto 1 
+				do conf skillsAddAuto_list RG_SNATCHER 10
+			]
+		}
+		else {
+			do conf statsAddAuto 0
+			do conf statsAddAuto_list none
+			do conf statsAddAuto_dontUseBonus 0
+			do conf statsAdd_over_99 0
 			
-			do conf skillsAddAuto 1
-			do conf skillsAddAuto_list AL_HEAL 5, AL_INCAGI 5, AL_DP 5, AL_BLESSING 10, AL_INCAGI 10, AL_RUWACH 1, AL_TELEPORT 2, AL_DEMONBANE 5, AL_WARP 2, AL_ANGELUS 10 
-		]
-	} elsif ($currentJob == Priest) {
-		[
-			do conf statsAddAuto 1
-			do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
-			do conf statsAddAuto_dontUseBonus 1
-			do conf statsAdd_over_99 1
-			
-			do conf skillsAddAuto 1 
-			do conf skillsAddAuto_list PR_MACEMASTERY 10, PR_IMPOSITIO 5, PR_KYRIE 10
-		]
-	} elsif ($currentJob == Monk) {
-		[
-			do conf statsAddAuto 1
-			do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
-			do conf statsAddAuto_dontUseBonus 1
-			do conf statsAdd_over_99 1
-			
-			do conf skillsAddAuto 1 
+			do conf skillsAddAuto 0
 			do conf skillsAddAuto_list none
-		]
-	} elsif ($currentJob == Rogue) {
-		[
-			do conf statsAddAuto 1
-			do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 40 agi, 30 str, 40 dex, 30 vit, 60 str, 80 agi, 20 luk
-			do conf statsAddAuto_dontUseBonus 1
-			do conf statsAdd_over_99 1
-			
-			do conf skillsAddAuto 1 
-			do conf skillsAddAuto_list RG_SNATCHER 10
-		]
-	} else {
-		do conf skillsAddAuto 0
-		do conf skillsAddAuto_list none
+		}
 	}
-}
-
-macro setReceiver1 {
-	$receiver = none
-	do conf rodexReceiver $receiver
-}
-
-macro setReceiver2 {
-	$receiver = none
-	do conf rodexReceiver $receiver
 }
 
 macro setTargets {

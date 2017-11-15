@@ -78,15 +78,12 @@ automacro FindPriest {
 		
 		switch ($.QuestActiveLastID) {
 			case (= 1001) { 
-				do conf jobQuest TalkToRubalkabara
 				call TalkWithPriest "prt_fild03 365 255"
 			}
 			case (= 1002) { 
-				do conf jobQuest TalkToMathilda
 				call TalkWithPriest "moc_fild07 39 354"
 			}
 			case (= 1003) {
-				do conf jobQuest TalkToYosuke
 				call TalkWithPriest "prt_fild00 207 221"
 			}
 		}
@@ -96,16 +93,16 @@ automacro FindPriest {
 
 macro TalkWithPriest {
 	do move $.param[0]
-	switch (&config (jobQuest)) {
-		case (= TalkToRubalkabara) {
+	switch ($.QuestActiveLastID) {
+		case (= 1001) {
 			do talk &npc(365 255)
 			do conf jobQuest goBackToChurch
 		}
-		case (= TalkToMathilda) {
+		case (= 1002) {
 			do talk &npc(41 355)
 			do conf jobQuest goBackToChurch
 		}
-		case (= TalkToYosuke) {
+		case (= 1003) {
 			do talk &npc(208 218)
 			do conf jobQuest goBackToChurch
 		}
@@ -129,6 +126,7 @@ automacro GoBackToChurch {
 }
 
 automacro ChangeToAcolyte {
+	QuestActive 1001, 1002, 1003
 	ConfigKey jobQuest ChangeToAcolyte
 	NpcNear /Cleric/
 	exclusive 1

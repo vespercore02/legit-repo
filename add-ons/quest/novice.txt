@@ -18,7 +18,7 @@ automacro SetDefaults {
 			do conf partyAutoShareItem 1
 			do conf partyAutoShareItemDiv 1
 			do conf showDomain 0
-			# do conf squelchDomains ai_attack, attacked, attackedMiss, console, skill, exp, attackMon, attackMonMiss, drop, teleport, useTeleport, emotion, info, list, system
+			do conf squelchDomains ai_attack, attacked, attackedMiss, console, skill, selfSkill, exp, attackMon, attackMonMiss, drop, teleport, useTeleport, emotion, info, list
 			do conf verbose 0
 			do conf verboseDomains none
 			do conf logDead 0
