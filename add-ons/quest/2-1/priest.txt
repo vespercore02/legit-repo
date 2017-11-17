@@ -1,0 +1,84 @@
+automacro PriestJobChange {
+	JobLevel = 50
+	exclusive 1
+	run-once 1
+	call {
+		if ($.job == Acolyte) {
+			do ai manual
+			do conf autoTalkCont 1
+			do tele 2
+			pause 2
+			do move prt_church 16 37
+			do talknpc 16 41 c r0 c c c c r0 c c c c c c c c c r0 c     #for chars who don't have the quest yet
+			#do talknpc 16 41 c r0 c									#for chars who already have the quest
+			pause 70
+			do move 23 185
+			do talknpc 24 187 c c c c r0 c c c c c c r0 c n c n 
+			do move job_prist 24 53
+			do a 0
+			pause 2
+			do a 1
+			pause 2
+			do a 2 
+			pause 2
+			do move 24 62
+			do a 0
+			pause 2
+			do a 1
+			pause 2
+			do move 25 72
+			do a 0
+			pause 2
+			do a 1
+			pause 2
+			do a 2 
+			pause 2
+			do move 23 81
+			do a 0
+			pause 2
+			do a 1
+			pause 2
+			do move 25 91
+			do a 0
+			pause 2
+			do a 1
+			pause 2
+			do a 2 
+			pause 2
+			do move 23 109 
+			pause 2
+			do move 168 45
+			pause 3
+			do talk resp 1
+			pause 3
+			do talk resp 1
+			pause 3
+			do move 168 80
+			pause 3
+			do talk resp 1
+			pause 3
+			do talk resp 1
+			pause 3
+			do move 168 114
+			pause 3
+			do talk resp 1
+			pause 3
+			do talk resp 1
+			pause 3		
+			do move 168 150 
+			pause 9
+			do talk resp 1
+			pause 3
+			do move 168 177
+			pause 2
+			do move 98 105
+			pause 1
+			do talknpc 16 41 c c c n 
+			do move 25 21 
+			do talknpc 27 24 c c c r0 c r1 c r0 c r0 c r1 c r1 c r0 c r0 c n 
+			do move 16 37 
+			do talknpc 16 41 c c c c c n
+			do ai auto
+		}
+	}
+}
