@@ -107,7 +107,7 @@ macro ChangeSavePoints {
 			case (== izlude) {
 				do ai manual
 				do move izlude &rand(128,133) &rand(81,86)
-				do talknpc 134 87 c r0 n
+				do talknpc 134 88 c r0 n
 				[
 					do conf saveMap izlude
 					do conf storageAuto $storageOption
