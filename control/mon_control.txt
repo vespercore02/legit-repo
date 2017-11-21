@@ -196,3 +196,5 @@ Mace Goblin 1 0 1
 Axe Goblin 1 0 1
 Dagger Goblin 1 0 1
 Archer Goblin 1 0 1
+Mastering 1 0 1
+Angeling 1 0 1

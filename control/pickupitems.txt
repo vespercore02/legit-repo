@@ -23,9 +23,7 @@ Hat 0
 Axe [4] -1
 Arrow -1
 Oridecon Arrow -1
-Fire Arrow -1
-Bow [3] 0
-Adventurer's Suit 0
+
 
 ## gef_fild11 ##
 Annoyed Mask 0
@@ -34,6 +32,13 @@ Poker Face 0
 Goblin Mask 0
 Indian Fillet 0
 Zorro Masque 0
+
+## pay_dun ##
+Girl's Diary [1] 0
+Fire Arrow -1
+Bow [3] 0
+Adventurer's Suit 0
+Nurse Cap 0
 
 ## Pick up all items by default ##
 all 1
