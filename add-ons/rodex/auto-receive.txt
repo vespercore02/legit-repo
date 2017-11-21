@@ -7,33 +7,43 @@ automacro ReceiveRodex {
 }
 
 macro GetRodexItems {
-	if (&config(rodexReceiver) != $.name) call stopReceiving
+	if (&config(rodexReceiver) != $.name) goto stopReceiving
+	if (&config(rodexReceiver) == $.name) goto getItems
 	
-	do rodex close
-	do rodex open
-	do rodex refresh
+	:stopReceiving
+		[
+			log ================================= =
+			log = You are not the receiver
+			log ================================= =
+		]
+		lock ReceiveRodex
 	
-	if (count_rodex() < 1) goto stopRodex
-	if (count_rodex() > 0) goto receiveRodex
-	
-	:stopRodex
-		log No rodex mail available
+	:getItems	
 		do rodex close
-		stop
-	:receiveRodex
-		log It's mail time!!!
-		$i = 0
-		while ($i < count_rodex()) {
-			log You are opening Mail ID: check_rodex_id($i)
-			$currentID = check_rodex_id($i)
-			do rodex read $currentID
-			do rodex getitems
-			do rodex getzeny
-			do rodex delete $currentID
-			$i++
-		}
-		do rodex close
-		stop
+		do rodex open
+		do rodex refresh
+
+		if (count_rodex() < 1) goto stopRodex
+		if (count_rodex() > 0) goto receiveRodex
+
+		:stopRodex
+			log No rodex mail available
+			do rodex close
+			stop
+		:receiveRodex
+			log It's mail time!!!
+			$i = 0
+			while ($i < count_rodex()) {
+				log You are opening Mail ID: check_rodex_id($i)
+				$currentID = check_rodex_id($i)
+				do rodex read $currentID
+				do rodex getitems
+				do rodex getzeny
+				do rodex delete $currentID
+				$i++
+			}
+			do rodex close
+			stop
 }
 
 sub check_rodex_id {

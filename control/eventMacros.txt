@@ -10,7 +10,6 @@
 
 # Rodex
 !include ..\add-ons\rodex\auto-receive.txt
-!include ..\add-ons\rodex\rodex-check.txt
 !include ..\add-ons\rodex\zeny.txt
 !include ..\add-ons\rodex\cards.txt
 !include ..\add-ons\rodex\equips.txt

@@ -4,9 +4,12 @@ automacro RodexZeny {
 	macro_delay 2
 	timeout 60
 	call {
-		if (&config (rodexReceiver) == $.name) call dontSend "rodexZeny"
+		if (&config (rodexReceiver) == $.name) goto dontSend
 		if (&config (rodexReceiver) != $.name) goto sendIt
 		
+		:dontSend
+			lock RodexZeny
+			stop
 		:sendIt		
 			$totalZeny = 500000
 			

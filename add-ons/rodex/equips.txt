@@ -10,10 +10,16 @@ macro MailEquips {
 	$equips = &InventoryType(equip)
 	@equipList = &split(',', $equips)
 	
-	if ($equipList[0] == -1) call noItemsAvailable
-	if (&config (rodexReceiver) == $.name) call dontSend "rodexEquip"
+	if ($equipList[0] == -1) goto noEquips
+	if (&config (rodexReceiver) == $.name) goto dontSend
 	if (&config (rodexReceiver) != $.name) goto sendIt
 	
+	:noEquips
+		log No equip available
+		stop
+	:dontSend
+		lock RodexEquips
+		stop
 	:sendIt
 		# set details
 		$receiver = &config (rodexReceiver)

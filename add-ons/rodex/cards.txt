@@ -10,16 +10,21 @@ macro MailCards {
 	$cards = &InventoryType(card)
 	@cardList = &split(',', $cards)
 	
-	if ($cardList[0] == -1) call noItemsAvailable
-	if (&config (rodexReceiver) == $.name) call dontSend "rodexCard"
+	if ($cardList[0] == -1) goto noCards
+	if (&config (rodexReceiver) == $.name) goto dontSend
 	if (&config (rodexReceiver) != $.name) goto sendIt
 	
+	:noCards
+		log No card available
+		stop
+	:dontSend
+		lock RodexCards
+		stop
 	:sendIt
-		
 		# set details
 		$receiver = &config (rodexReceiver)
 		$mailTitle = TITLE
-		$mailBody = TITLE
+		$mailBody = " "
 		
 		# open rodex
 		do rodex open
