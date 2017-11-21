@@ -3,34 +3,13 @@
 # Commands
 #_____________________________________________________________________
 
-macro setReceiver1 {
+macro setMyReceiver {
 	$receiver = none
 	do conf rodexReceiver $receiver
-}
-
-macro setReceiver2 {
-	$receiver = none
-	do conf rodexReceiver $receiver
-}
-
-macro setStorage {
-	[	
-		do conf saveMap prt_fild05
-		do conf storageAuto $storageOption
-		do conf storageAuto_npc prt_fild05 290 224
-		do conf storageAuto_npc_steps c r1 n
-		do conf autoMoveOnDeath 1
-		do conf autoMoveOnDeath_x &rand(260,280)
-		do conf autoMoveOnDeath_y &rand(200,220)
-		do conf autoMoveOnDeath_map prt_fild05
-	]
-	[
-		do conf sellAuto $sellOption
-		do conf sellAuto_npc prt_fild05 290 221 
-	]
 }
 
 macro setConfig {
+	log === Set Defaults === =
 	[
 		do conf autoResponse 1
 		do conf autoResponseOnHeal 1
@@ -56,6 +35,18 @@ macro setConfig {
 		do conf logConsole 0
 		do conf sleepTime 150000			
 	]
+	log === Setting Defaults Done! === =
+	
+	log === Setting AutoMap === =
+	
+	[
+		do conf -f autoMapChange 0
+		do conf -f autoMapChange_time 7200
+		do conf -f autoMapChange_timeSeed 7200
+		do conf -f autoMapChange_list none
+	]
+	
+	log === Setting AutoMap Done! === =
 }
 
 macro setAutoMap {

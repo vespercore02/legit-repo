@@ -18,6 +18,8 @@ automacro SetGrindingSpot {
 macro ChangeGrindMaps {
 	$currentJob = $.job
 	
+	if (&config(autoMapChange) == 1) call LockGrindMaps
+	
 	switch ($currentJob) {
 		case (== Thief) {
 			$LVL20 = prt_fild07
@@ -73,4 +75,8 @@ macro ChangeGrindMaps {
 			lock SetGrindingSpot
 		}
 	}
+}
+
+macro LockGrindMaps {
+	lock SetGrindingSpot
 }

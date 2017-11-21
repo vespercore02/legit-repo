@@ -7,6 +7,8 @@ automacro ReceiveRodex {
 }
 
 macro GetRodexItems {
+	if (&config(rodexReceiver) != $.name) call stopReceiving
+	
 	do rodex close
 	do rodex open
 	do rodex refresh
