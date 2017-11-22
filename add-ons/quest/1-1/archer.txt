@@ -38,7 +38,6 @@ automacro CountQuestTrunks {
 	InMap new_1-3
 	exclusive 1
 	macro_delay 1
-	
 	call {
 		$trunks = &eval(&invamount(Trunk)+&invamount(Barren Trunk)*2+&invamount(Solid Trunk)*3+&invamount(Fine-grained Trunk)*5)
 		if ($trunks >= 40) goto TrunksComplete
@@ -131,7 +130,7 @@ automacro SwordsmanJobQuest {
 		do conf QuestPart none
 
 		log UnloadingArcherDefaults
-		
+		[
 		#items_control.txt
 		
 		do iconf Trunk 0 1 0
@@ -156,7 +155,7 @@ automacro SwordsmanJobQuest {
 }
 
 automacro ResumeQuest {
-	InMap payon_in02,pay_arche
+	InMap payon_in02, pay_arche
 	NotInMap new_1-3, new_1-4
 	JobLevel = 10
 	JobIDNot 3
