@@ -36,11 +36,11 @@ automacro Thief50 {
 			log === Set Config ===
 			[
 				do conf lockMap none
+				do conf teleportAuto_idle 0
 				do conf route_randomWalk 0
 				do conf storageAuto 0
 				do conf sellAuto 0
 				do conf attackAuto -1
-				
 			]
 			
 			do move morocc
@@ -67,7 +67,6 @@ automacro Thief50 {
 
 automacro MoveTojobQuest {
 	ConfigKey jobQuest MoveTojobQuest
-	QuestInactive 2017
 	NpcNotNear /Rogue Guildsman/
 	InMap morocc,in_rogue
 	JobID 6
@@ -235,13 +234,13 @@ automacro farmFootskin {
 }
 
 automacro GiveQuestItems {
-	ConfigKey jobQuest GiveQuestItems
 	QuestActive 2020
 	NpcNear /Mr. Smith/
 	InMap in_rogue
 	Zeny > 9999
 	exclusive 1
 	call {
+		do move in_rogue &rand(370,373) &rand(20,24)
 		do talk $.NpcNearLastBinId
 	}
 	timeout 30

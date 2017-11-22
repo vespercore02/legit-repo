@@ -15,18 +15,16 @@ macro MailCards {
 	if (&config (rodexReceiver) != $.name) goto sendIt
 	
 	:noCards
-		log No cards available
+		log No card available
 		stop
 	:dontSend
-		log You are the current rodex receiver
 		lock RodexCards
 		stop
 	:sendIt
-		
 		# set details
 		$receiver = &config (rodexReceiver)
 		$mailTitle = TITLE
-		$mailBody = TITLE
+		$mailBody = " "
 		
 		# open rodex
 		do rodex open

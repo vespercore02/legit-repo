@@ -110,7 +110,7 @@ automacro RodexFeather {
 
 macro StorageRodex {
 	$itemName = $.InStorageLast
-		
+	
 	do ai manual
 	
 	if ($.storageopen == 1) {
@@ -143,4 +143,3 @@ macro StorageRodex {
 	
 	do ai on
 }
-

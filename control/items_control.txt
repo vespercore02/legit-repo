@@ -367,7 +367,7 @@ Animal Poop 0 0 1
 737 0 0 1 # Black Ladle
 1034 0 0 1 # Blue Hair
 744 0 0 1 # Bouquet
-7054 0 0 1 # Brigan
+7054 0 1 0 # Brigan
 7158 0 0 1 # Broken Liquor Jar
 7070 0 0 1 # Broken Shell
 7156 0 0 1 # Broken Shuriken
@@ -478,7 +478,7 @@ Garlet 0 0 1
 921 0 0 1 # Mushroom Spore
 1095 0 0 1 # Needle of Alarm
 7102 0 0 1 # Nightmare
-1022 0 0 1 # Nine Tails
+1022 0 1 0 # Nine Tails
 960 0 0 1 # Nipper
 941 0 0 1 # Nose Ring
 5037 0 0 1 # Nut Shell

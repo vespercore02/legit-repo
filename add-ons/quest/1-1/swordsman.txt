@@ -5,7 +5,6 @@ automacro LeavingTrainingGround {
 	run-once 1
 	macro_delay 1
 	call {
-		do conf sellAuto 0
 		do conf route_randomWalk 0
 		do conf attackAuto -1
 		do move new_1-4 &rand(96,103) &rand(21,25) #NearFinalTester

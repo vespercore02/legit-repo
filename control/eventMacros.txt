@@ -23,9 +23,12 @@
 !include ..\add-ons\utilities\events\teleport.txt
 !include ..\add-ons\utilities\events\block-spammer.txt
 #!include ..\add-ons\utilities\events\holy-water.txt
+#!include ..\add-ons\utilities\events\pecopeco-trainer.txt
 
 # Quest
 #!include ..\add-ons\quest\novice.txt
 #!include ..\add-ons\quest\1-1\thief.txt
 #!include ..\add-ons\quest\1-1\acolyte.txt
+#!include ..\add-ons\quest\2-1\priest.txt
 #!include ..\add-ons\quest\2-2\rogue.txt
+

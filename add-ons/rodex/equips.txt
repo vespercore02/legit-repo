@@ -15,10 +15,9 @@ macro MailEquips {
 	if (&config (rodexReceiver) != $.name) goto sendIt
 	
 	:noEquips
-		log No equips available
+		log No equip available
 		stop
 	:dontSend
-		log You are the current rodex receiver
 		lock RodexEquips
 		stop
 	:sendIt

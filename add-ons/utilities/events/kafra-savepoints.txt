@@ -107,7 +107,7 @@ macro ChangeSavePoints {
 			case (== izlude) {
 				do ai manual
 				do move izlude &rand(128,133) &rand(81,86)
-				do talknpc 134 87 c r0 n
+				do talknpc 134 88 c r0 n
 				[
 					do conf saveMap izlude
 					do conf storageAuto $storageOption
@@ -172,21 +172,21 @@ macro ChangeSavePoints {
 			}
 			case (== payon) {
 				do ai manual
-				do move payon &rand(175,179) &rand(98,102)
-				do talknpc 181 104 c r0 n
+				do move payon 172 &rand(220,225)
+				do talknpc 175 226 c r0 n
 				[	
 					do conf saveMap payon
 					do conf storageAuto $storageOption
-					do conf storageAuto_npc payon 181 104
+					do conf storageAuto_npc payon 175 226 
 					do conf storageAuto_npc_steps c r1 n
 					do conf autoMoveOnDeath 1
-					do conf autoMoveOnDeath_x &rand(150,170)
-					do conf autoMoveOnDeath_y &rand(70,90)
+					do conf autoMoveOnDeath_x &rand(160,170)
+					do conf autoMoveOnDeath_y &rand(200,220)
 					do conf autoMoveOnDeath_map payon
 				]
 				[
 					do conf sellAuto $sellOption
-					do conf sellAuto_npc payon_in01 5 49  
+					do conf sellAuto_npc payon 159 96 
 				]
 				do ai on
 				release KafraSavePoints

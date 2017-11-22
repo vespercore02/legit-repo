@@ -46,7 +46,6 @@ automacro CountQuestTrunks {
 	
 		:TrunksComplete
 			log Enough trunks value gathered. $trunks.
-			do conf sellAuto 0
 			do conf attackAuto -1
 			do conf route_randomWalk 0
 			do conf lockMap none
@@ -57,6 +56,8 @@ automacro CountQuestTrunks {
 
 automacro LeavingTrainingGround {
 	ConfigKey QuestPart LeavingTrainingGround
+	JobLevel = 10
+	#BaseLevel = 25 #Enable BaseLevel condition to stay longer in TG.
 	InMap new_1-3
 	exclusive 1
 	run-once 1
@@ -121,7 +122,7 @@ automacro SwordsmanJobQuest {
 		do eq Novice Adventurer's Suit [1]
 		do eq Novice Composite Bow [3]
 		do eq Arrow
-		
+		[
 		do conf route_randomWalk 1
 		do conf attackAuto 2
 		do conf sitAuto_hp_lower 40

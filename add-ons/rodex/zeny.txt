@@ -1,4 +1,4 @@
-automacro ZenyRodex {
+automacro RodexZeny {
 	Zeny >= 550000
 	exclusive 1
 	macro_delay 2
@@ -8,8 +8,7 @@ automacro ZenyRodex {
 		if (&config (rodexReceiver) != $.name) goto sendIt
 		
 		:dontSend
-			log You are the current rodex receiver
-			lock ZenyRodex
+			lock RodexZeny
 			stop
 		:sendIt		
 			$totalZeny = 500000
