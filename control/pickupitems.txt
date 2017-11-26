@@ -23,6 +23,9 @@ Hat 0
 Axe [4] -1
 Arrow -1
 Oridecon Arrow -1
+Cutter [4] -1
+Bow [4] -1
+Sandals [1] -1
 
 
 ## gef_fild11 ##

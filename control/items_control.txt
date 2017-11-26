@@ -47,11 +47,12 @@ Shoes [1] 0 0 0
 Muffler [1] 0 0 0
 Iron 0 1 0
 Steel 0 1 0
-Goblin Card 0 0 0
+Angelic Guard [1] 0 0 1
+/.* Card/ 0 0 0
 
 Novice Guard 0 0 1
 Novice Slippers 0 0 1
-Somber Novice Hood 0 0 1 
+Somber Novice Hood 0 0 1
 Tattered Novice Ninja Suit 0 0 1
 Novice Adventurer's Suit [1] 0 0 1
 Novice Cutter [3] 0 0 1
@@ -92,8 +93,6 @@ Red Herb 0 0 1
 # You may want to modify these if you're an archer/hunter
 
 Arrow 3000 1 0
-
-
 
 #########################
 ##### SELLING ITEMS #####

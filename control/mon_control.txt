@@ -59,10 +59,10 @@
 
 
 ##### Eggs #####
-Ant's Egg 0 0 0
-PecoPeco's Egg 0 0 0
-Pupa 0 0 0
-Thief Bug's Egg 0 0 0
+Ant's Egg 1 0 0
+PecoPeco's Egg 1 0 0
+Pupa 1 0 0
+Thief Bug's Egg 1 0 0
 
 ##### Alchemist Summons ####
 # Summoned Parasite
@@ -190,11 +190,3 @@ Tao Gunka 0 1 0
 Thanatos 0 1 0
 Turtle General 0 1 0
 Vesper 0 1 0
-Argiope 1 0 1
-Poring 0 0 0
-Mace Goblin 1 0 1
-Axe Goblin 1 0 1
-Dagger Goblin 1 0 1
-Archer Goblin 1 0 1
-Mastering 1 0 1
-Angeling 1 0 1
