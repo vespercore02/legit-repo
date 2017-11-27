@@ -44,6 +44,7 @@ macro MailEquips {
 			$i = 0;
 			while ($i < $maxItem) {
 				log Putting Equip with Index: $equipList[$i]
+				pause 1
 				do rodex add $equipList[$i] 1
 				$i++
 			}

@@ -44,6 +44,7 @@ macro MailCards {
 			$i = 0;
 			while ($i < $maxItem) {
 				log Putting Card with Index: $cardList[$i]
+				pause 1
 				do rodex add $cardList[$i] 1
 				$i++
 			}
@@ -66,6 +67,7 @@ macro MailCards {
 			$i = 0;
 			while ($i < $maxItem) {
 				log Putting Card with Index: $cardList[$i]
+				pause 1
 				do rodex add $cardList[$i] 1
 				$i++
 			}

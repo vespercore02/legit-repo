@@ -42,6 +42,9 @@ Fire Arrow -1
 Bow [3] 0
 Adventurer's Suit 0
 Nurse Cap 0
+Munak Hat 0
+Bongun Hat 0
+
 
 ## Pick up all items by default ##
 all 1
