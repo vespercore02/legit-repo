@@ -39,6 +39,7 @@
 
 # All items not mentioned in this file will be automatically stored in storage.
 all 0 1 0
+/.* Card/ 0 0 0
 Red Bandana 0 0 0
 Buckler [1] 0 0 0
 Composite Bow [4] 0 0 0
@@ -48,7 +49,8 @@ Muffler [1] 0 0 0
 Iron 0 1 0
 Steel 0 1 0
 Angelic Guard [1] 0 0 1
-/.* Card/ 0 0 0
+Silk Robe [1] 0 0 0
+
 
 Novice Guard 0 0 1
 Novice Slippers 0 0 1

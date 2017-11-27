@@ -90,7 +90,7 @@ automacro RodexBugLeg {
 
 automacro RodexOBB {
 	Zeny >= 2500
-	InStorage "Old Blue Box" >= 50
+	InStorage "Old Blue Box" >= 25
 	StorageOpened 1
 	exclusive 1
 	macro_delay 2

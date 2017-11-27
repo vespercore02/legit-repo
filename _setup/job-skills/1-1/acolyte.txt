@@ -31,3 +31,11 @@ useSelf_skill Cure {
     sp > 10%
     timeout 5
 }
+
+attackSkillSlot Ruwach {
+	lvl 1
+	target_whenStatusActive Hide, Cloaking
+	target Sleeper
+	whenStatusInactive Ruwach
+	isSelfSkill 1
+}

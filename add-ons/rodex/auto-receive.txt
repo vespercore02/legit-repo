@@ -17,9 +17,8 @@ macro GetRodexItems {
 			log ================================= =
 		]
 		lock ReceiveRodex
-	
-	:getItems	
-		do rodex close
+		stop
+	:getItems
 		do rodex open
 		do rodex refresh
 
