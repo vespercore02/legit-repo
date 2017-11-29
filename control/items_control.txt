@@ -175,7 +175,6 @@ Cotton Shirt [1] 0 0 1
 2408 0 0 1 # Shackles
 2106 0 0 1 # Shield
 2404 0 0 1 # Shoes
-2322 0 0 1 # Silk Robe
 2611 0 0 1 # Silver Ring
 2333 0 0 1 # Silver Robe
 2333 0 0 1 # Silver Robe [1]

@@ -118,6 +118,17 @@ macro setStats {
 				do conf skillsAddAuto_list AL_HEAL 5, AL_INCAGI 5, AL_DP 5, AL_BLESSING 10, AL_INCAGI 10, AL_RUWACH 1, AL_TELEPORT 2, AL_DEMONBANE 5, AL_WARP 2, AL_ANGELUS 10 
 			]
 		}
+		case (== Swordsman) {	
+			[
+				do conf statsAddAuto 1
+				do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 40 agi, 30 str, 40 dex, 30 vit, 60 str, 80 agi
+				do conf statsAddAuto_dontUseBonus 1
+				do conf statsAdd_over_99 1
+				
+				do conf skillsAddAuto 1
+				do conf skillsAddAuto_list SM_SWORD 1, SM_TWOHAND 10,  SM_RECOVERY 10, SM_BASH 10, SM_PROVOKE 5, SM_MAGNUM 4, SM_ENDURE 10
+			]
+		}
 		case (== Priest) {
 			[
 				do conf statsAddAuto 1
