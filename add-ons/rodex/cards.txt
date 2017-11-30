@@ -1,5 +1,6 @@
 automacro RodexCards {
 	Zeny >= 2500
+	priority 1
 	exclusive 1
 	macro_delay 2
 	timeout 1800
