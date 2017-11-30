@@ -25,14 +25,14 @@ automacro TrainingGround {
 		
 		do mconf Willow 2
 		]
-		do conf QuestPart CheckTrunkQuestItems
+		do conf jobQuest CheckTrunkQuestItems
 		
 	}
 	timeout 30
 }
 
 automacro CountQuestTrunks {
-	ConfigKey QuestPart CheckTrunkQuestItems
+	ConfigKey jobQuest CheckTrunkQuestItems
 	JobID 0
 	JobLevel = 10
 	InMap new_1-3
@@ -49,13 +49,13 @@ automacro CountQuestTrunks {
 			do conf attackAuto -1
 			do conf route_randomWalk 0
 			do conf lockMap none
-			do conf QuestPart LeavingTrainingGround
+			do conf jobQuest LeavingTrainingGround
 	}
 	timeout 60
 }
 
 automacro LeavingTrainingGround {
-	ConfigKey QuestPart LeavingTrainingGround
+	ConfigKey jobQuest LeavingTrainingGround
 	JobLevel = 10
 	#BaseLevel = 25 #Enable BaseLevel condition to stay longer in TG.
 	InMap new_1-3
@@ -64,14 +64,14 @@ automacro LeavingTrainingGround {
 	macro_delay 1
 	call {
 		do move new_1-4 &rand(96,103) &rand(21,25) #NearFinalTester
-		do conf QuestPart TalktoFinalTester
+		do conf jobQuest TalktoFinalTester
 	}
 	timeout 30
 }
 
 automacro TalktoFinalTester {
 	NpcNear /Final Tester/
-	ConfigKey QuestPart TalktoFinalTester
+	ConfigKey jobQuest TalktoFinalTester
 	exclusive 1
 	run-once 1
 	macro_delay 1
@@ -102,7 +102,7 @@ automacro TalktoFinalTester {
 		do talk resp 0 #Buy the item for him/her
 		do talk resp 0	#Yes for Archer
 		do conf lockMap none
-		do conf QuestPart ArcherJobQuest
+		do conf jobQuest ArcherJobQuest
 	}
 	timeout 30
 }
@@ -110,7 +110,7 @@ automacro TalktoFinalTester {
 automacro SwordsmanJobQuest {
 	NpcNear /Archer Guildsman/
 	JobLevel = 10
-	ConfigKey QuestPart ArcherJobQuest
+	ConfigKey jobQuest ArcherJobQuest
 	exclusive 1
 	run-once 1
 	macro_delay 1
@@ -127,7 +127,7 @@ automacro SwordsmanJobQuest {
 		do conf attackAuto 2
 		do conf sitAuto_hp_lower 40
 		do conf sitAuto_hp_upper 80
-		do conf QuestPart none
+		do conf jobQuest none
 
 		log UnloadingArcherDefaults
 		[
@@ -164,7 +164,7 @@ automacro ResumeQuest {
 	macro_delay 1
 	call {
 		do move payon_in02 &rand(62,66) &rand(63,67) #ArcherGuildsman
-		do conf QuestPart ArcherJobQuest
+		do conf jobQuest ArcherJobQuest
 	}
 	timeout 30
 }
