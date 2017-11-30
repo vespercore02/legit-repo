@@ -1,24 +1,30 @@
-automacro LeavingTrainingGround {
+automacro LeaveTrainingGround_Swordsman {
+	JobID 0
 	JobLevel = 10
 	InMap new_1-3
 	exclusive 1
 	run-once 1
-	macro_delay 1
+	macro_delay 2
 	call {
-		do conf route_randomWalk 0
-		do conf attackAuto -1
-		do move new_1-4 &rand(96,103) &rand(21,25) #NearFinalTester
-		do conf -f jobQuest TalktoFinalTester
+		[
+			do conf route_randomWalk 0
+			do conf attackAuto -1
+		]
+		do move new_1-4 99 &rand(19,22)
+		do conf tgQuest TalkToFinalTester_Swordsman
+		log Quest was set to: TalkToFinalTester_Swordsman
 	}
-	timeout 30
+	timeout 10
 }
 
-automacro TalktoFinalTester {
+
+automacro TalkToFinalTester_Swordsman {
+	JobID 0
+	JobLevel = 10
 	NpcNear /Final Tester/
-	ConfigKey jobQuest TalktoFinalTester
+	ConfigKey tgQuest TalkToFinalTester_Swordsman
 	exclusive 1
-	run-once 1
-	macro_delay 1
+	macro_delay 5
 	call {
 		do talk $.NpcNearLastBinId
 		do talk resp 1 #Take the test
@@ -45,76 +51,89 @@ automacro TalktoFinalTester {
 		do talk resp 0
 		do talk resp 0
 		do talk resp 0	#Saying Yes for Swordsman
-		do conf lockMap none
-		do conf jobQuest SwordsmanJobQuest
+		
+		[
+			do conf lockMap none
+			do conf jobQuest SetSwordsmanQuest
+			log Quest was set to: SetSwordsmanQuest
+		]
 	}
-	timeout 30
+	timeout 120
 }
 
-automacro ResumeQuest {
-	InMap izlude_in, izlude
-	NotInMap new_1-3, new_1-4
+automacro SetSwordsmanQuest {
+	JobID 0
 	JobLevel = 10
-	JobIDNot 1
-	run-once 1
-	exclusive 1
-	macro_delay 1
-	call {
-		do move izlude_in &rand(72,76) &rand(166,168) #Swordman
-		do conf jobQuest SwordsmanJobQuest
-	}
-	timeout 30
-}
-
-automacro SwordsmanJobQuest {
 	NpcNear /Swordman/
-	JobLevel = 10
-	ConfigKey jobQuest SwordsmanJobQuest
+	ConfigKey jobQuest SetSwordsmanQuest
 	exclusive 1
-	run-once 1
-	macro_delay 1
+	macro_delay 3
 	call {
 		do talk $.NpcNearLastBinId
 		do talk resp 0
 		do talk resp 0
 		do talk resp 0
-		do move &rand(63,65) &rand(169,171)
-		do talknpc 62 170 c	#Talknpc for next room.
-		do move izlude_in &rand(28,33) &rand(167,169) #NearTestHallStaff
-		do conf jobQuest Swordsman1stQuest
+		
+		pause 10 
+		do move &rand(63,64) 173
+		
+		#Get to the next room
+		do talk &npc(62 170) 
+		
+		
+		#Talk to Female Swordsman
+		pause 2
+		do move izlude_in &rand(28,29) 173
 	}
+	timeout 60
 }
 
-automacro Swordsman1stQuest {
-	NpcNear /Swordman/ #FemaleSwordmanReception
-	ConfigKey jobQuest Swordsman1stQuest
+automacro TalkToFemaleSwordsman {
+	JobID 0
+	JobLevel = 10
+	QuestActive 1014
+	IsInMapAndCoordinate izlude_in 28..29 173
+	NpcNear /Swordman/ #Female Swordsman
 	exclusive 1
-	run-once 1
-	macro_delay 1
+	macro_delay 2
 	call {
-		pause 1
+		pause 2
 		do talk $.NpcNearLastBinId 
-		do move &rand(29,32) &rand(168,172)
-		do conf jobQuest Swordsman2ndQuest
+		
+		
+		do move &rand(28,29) 161
+		[
+			do conf jobQuest TalkToTestHallStaff
+			log Quest was set to: TalkToTestHallStaff
+		]
 	}
+	timeout 60
 }
 
-automacro Swordsman2ndQuest {
+automacro TalkToTestHallStaff {
+	JobID 0
+	JobLevel = 10
+	QuestActive 1014
 	NpcNear /Test Hall Staff/
-	ConfigKey jobQuest Swordsman2ndQuest
+	ConfigKey jobQuest TalkToTestHallStaff
 	exclusive 1
-	macro_delay 1
+	macro_delay 2
 	call {
+		pause 2
 		do talk $.NpcNearLastBinId
 		do conf jobQuest SwordsmanMaze
 	}
+	timeout 60
 }
 
 automacro SwordsmanMaze {
-	InMap sword_1-1, sword_2-1, sword_3-1
+	JobID 0
+	JobLevel = 10
+	QuestActive 1014
+	InMap sword_1-1 10 245, sword_2-1 10 245, sword_3-1 10 245
 	ConfigKey jobQuest SwordsmanMaze
 	exclusive 1
-	macro_delay 0.5
+	macro_delay 2
 	call {
 		do move 21 246
 		do move 22 250
@@ -180,45 +199,60 @@ automacro SwordsmanMaze {
 		do move 184 171
 		do move 188 168
 		do move 193 168
+		
+		pause 10
 		do move &rand(220,222) &rand(166,169)
-		do talknpc 223 167 n #Mae
-		pause 1
+		
+		pause 2
+		do talk &npc(223 167) 
+		
+		# Finish Quest
+		pause 5
 		do move izlude_in &rand(72,76) &rand(166,168) #NearSwordman
 		do conf jobQuest SwordsmanFinishQuest
 	}
 	timeout 30
 }
 
-automacro SwordsmanMazeDead {
-	MapLoaded izlude_in
-	ConfigKey jobQuest SwordsmanMaze
-	exclusive 1
-	macro_delay 1
-	call {
-		pause 2
-		do move &rand(29,31) &rand(164,166)
-		do conf jobQuest Swordsman2ndQuest
-	}
-	timeout 30
-}
-
-automacro SwordsmanFinishQuest {
+automacro SwordsmanFinishQuest 
+	JobID 0
+	JobLevel = 10
+	QuestActive 1014
 	NpcNear /Swordman/
 	ConfigKey jobQuest SwordsmanFinishQuest
 	exclusive 1
 	run-once 1
-	macro_delay 1
+	macro_delay 3
 	call {
 		do talk $.NpcNearLastBinId
 		do talk resp 0
 		do eq Novice Adventurer's Suit [1]
 		do eq Novice Falchion [3]
-		do conf route_randomWalk 1
-		do conf attackAuto 2
-		do conf sitAuto_hp_lower 20
-		do conf sitAuto_hp_upper 90
-		do conf jobQuest none
-		do relog 999999
+		
+		[
+			do conf lockMap none
+			do conf jobQuest none
+			do conf route_randomWalk 1
+			do conf attackAuto 2
+			do conf sitAuto_hp_lower 20
+			do conf sitAuto_hp_upper 90
+		]
+		
+		log === Swordsman Job Quest Done! === =
+		do relog 1800
+	}
+	timeout 30
+}
+
+automacro RetakeSwordsmanMaze {
+	MapLoaded izlude_in, izlude
+	ConfigKey jobQuest SwordsmanMaze
+	exclusive 1
+	macro_delay 1
+	call {
+		pause 2
+		do move &rand(28,29) 161
+		do conf jobQuest TalkToTestHallStaff
 	}
 	timeout 30
 }

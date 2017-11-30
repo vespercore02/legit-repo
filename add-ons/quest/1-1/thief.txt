@@ -1,7 +1,7 @@
 automacro LeaveTrainingGround_Thief {
 	JobID 0
-	InMap new_1-3
 	JobLevel = 10
+	InMap new_1-3
 	exclusive 1
 	run-once 1
 	macro_delay 2
@@ -22,7 +22,6 @@ automacro TalkToFinalTester_Thief {
 	NpcNear /Final Tester/
 	ConfigKey tgQuest TalkToFinalTester_Thief
 	exclusive 1
-	run-once 1
 	macro_delay 20
 	call {
 		do talknpc 100 29 c w1 c w1 c w1 c w1 c w1 c r0 c w1 r2 c w1 c w1 c w1 c w1 c
@@ -41,6 +40,7 @@ automacro TalkToFinalTester_Thief {
 			do conf skillsAddAuto_list NV_BASIC 9, TF_DOUBLE 5, TF_MISS 5, TF_STEAL 10, TF_DOUBLE 5, TF_MISS 5
 		]
 	}
+	timeout 120
 }
 
 automacro SetThiefQuest {
@@ -195,7 +195,6 @@ automacro TalkToComrade {
 		do respawn
 		[
 			do conf lockMap none
-			do conf tgQuest none
 			do conf jobQuest none
 		]
 		log Job Change: Thief Quest Done!

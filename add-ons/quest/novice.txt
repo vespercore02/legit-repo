@@ -202,6 +202,12 @@ automacro TalkWithBig4 {
 	timeout 60
 }
 
+#TODO
+#7123
+#7124
+#7126
+#7127
+
 automacro HitTheGrounds {
 	JobID 0
 	ConfigKey jobQuest HitTheGrounds
