@@ -2,6 +2,7 @@ automacro Get_Pecopeco {
     exclusive 1
     SkillLevel KN_CAVALIERMASTERY = 5
     StatusInactiveHandle EFST_RIDING
+    Zeny > 10000
     NpcNotNear /Peco peco Breeder/i
     overrideAI 1
     run-once 1
