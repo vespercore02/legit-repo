@@ -122,7 +122,7 @@ automacro TalktoFinalTester {
 	timeout 30
 }
 
-automacro SwordsmanJobQuest {
+automacro ArcherJobQuest {
 	NpcNear /Archer Guildsman/
 	JobLevel = 10
 	ConfigKey jobQuest ArcherJobQuest
@@ -169,7 +169,7 @@ automacro SwordsmanJobQuest {
 	}
 }
 
-automacro ResumeQuest {
+automacro ResumeQuestArcher {
 	InMap payon_in02, pay_arche
 	NotInMap new_1-3, new_1-4
 	JobLevel = 10
