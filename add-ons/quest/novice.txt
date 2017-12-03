@@ -55,7 +55,6 @@ automacro SetQuest {
 	priority 1
 	exclusive 1
 	call {
-		do conf -f jobQuest none
 		do conf -f jobQuest TalkWithGramps
 		log Quest was set to: TalkWithGramps
 		do move 143 111
@@ -69,17 +68,18 @@ automacro TalkWithGramps {
 	ConfigKey jobQuest TalkWithGramps
 	NpcNear /Gramps/
 	exclusive 1
-	macro_delay 20
 	call {
+		pause 5
 		do talknpc 148 112 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 r="No" r="No" r="No" r="No" r="No" r="Yes"
+		pause 0.5
 		do talk 2
 		[
 			log TalkWithGramps: Quest Done
 			do conf jobQuest TalkWithSprakki
 			log Quest was set to: TalkWithSprakki
 		]
-		stop
 	}
+	timeout 60
 }
 
 automacro TalkWithSprakki {
@@ -88,11 +88,12 @@ automacro TalkWithSprakki {
 	ConfigKey jobQuest TalkWithSprakki
 	NpcNotNear /Sprakki/
 	exclusive 1
-	macro_delay 10
 	call {
 		pause 5
 		do move 100 23
+		pause 5
 		do talknpc 100 29 c w1 c w1 c w1 c w1 c
+		pause 0.8
 		do talknpc 100 29 c w1 c w1 r0 c w1 c
 		[
 			log TalkWithSprakki: Quest Done
@@ -100,6 +101,7 @@ automacro TalkWithSprakki {
 			log Quest was set to: TalkWithBrade
 		]
 	}
+	timeout 60
 }
 
 automacro TalkWithBrade {
@@ -108,8 +110,8 @@ automacro TalkWithBrade {
 	ConfigKey jobQuest TalkWithBrade
 	NpcNear /Brade/
 	exclusive 1
-	macro_delay 20
 	call {
+		pause 5
 		do talknpc 100 105 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c
 		[
 			do eq Somber Novice Hood
@@ -119,6 +121,7 @@ automacro TalkWithBrade {
 			do eq Tattered Novice Ninja Suit
 			do eq Novice Main-Gauche
 		]
+		pause 5
 		do talknpc 100 105 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c
 		[
 			log TalkWithBrade: Quest Done
@@ -127,6 +130,7 @@ automacro TalkWithBrade {
 		]
 		do move 115 118
 	}
+	timeout 60
 }
 
 automacro TalkWithJinha {
@@ -145,6 +149,7 @@ automacro TalkWithJinha {
 		]
 		do move 100 110
 	}
+	timeout 60
 }
 
 automacro TalkWithBradeAgain {
@@ -164,6 +169,7 @@ automacro TalkWithBradeAgain {
 		]
 		do move 74 106
 	}
+	timeout 60
 }
 
 automacro TalkWithBig4 {
@@ -199,7 +205,7 @@ automacro TalkWithBig4 {
 			log Quest was set to: HitTheGrounds
 		]
 	}
-	timeout 60
+	timeout 120
 }
 
 #TODO

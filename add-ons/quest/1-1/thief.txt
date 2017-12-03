@@ -11,7 +11,7 @@ automacro LeaveTrainingGround_Thief {
 			do conf attackAuto -1
 		]
 		do move new_1-4 99 &rand(19,22)
-		do conf jobQuest TalkToFinalTester_Thief
+		do conf -f jobQuest TalkToFinalTester_Thief
 		log Quest was set to: TalkToFinalTester_Thief
 	}
 	timeout 10
@@ -19,12 +19,14 @@ automacro LeaveTrainingGround_Thief {
 
 automacro TalkToFinalTester_Thief {
 	JobID 0
+	JobLevel = 10
 	NpcNear /Final Tester/
 	ConfigKey jobQuest TalkToFinalTester_Thief
 	exclusive 1
-	macro_delay 20
 	call {
+		pause 5
 		do talknpc 100 29 c w1 c w1 c w1 c w1 c w1 c r0 c w1 r2 c w1 c w1 c w1 c w1 c
+		pause 5
 		[
 			log TalkToFinalTester_Thief: Quest Done
 			do conf jobQuest none
@@ -32,12 +34,12 @@ automacro TalkToFinalTester_Thief {
 			log jobQuest was set to: Thief
 			do conf route_randomWalk 1
 			do conf attackAuto 2
-			do conf statsAddAuto 1
-			do conf statsAddAuto_list 10 str, 10 agi, 10 dex, 20 str, 10 vit, 30 agi, 20 dex, 40 str, 60 agi, 30 dex, 30 vit
-			do conf statsAddAuto_dontUseBonus 1
-			do conf statsAdd_over_99 1
-			do conf skillsAddAuto 1
-			do conf skillsAddAuto_list NV_BASIC 9, TF_DOUBLE 5, TF_MISS 5, TF_STEAL 10, TF_DOUBLE 5, TF_MISS 5
+			#do conf statsAddAuto 1
+			#do conf statsAddAuto_list 10 str, 10 agi, 10 dex, 20 str, 10 vit, 30 agi, 20 dex, 40 str, 60 agi, 30 dex, 30 vit
+			#do conf statsAddAuto_dontUseBonus 1
+			#do conf statsAdd_over_99 1
+			#do conf skillsAddAuto 1
+			#do conf skillsAddAuto_list NV_BASIC 9, TF_DOUBLE 5, TF_MISS 5, TF_STEAL 10, TF_DOUBLE 5, TF_MISS 5
 		]
 	}
 	timeout 120
@@ -45,6 +47,7 @@ automacro TalkToFinalTester_Thief {
 
 automacro SetThiefQuest {
 	JobID 0
+	JobLevel = 10
 	InMap moc_ruins, morocc
 	ConfigKey jobQuest Thief
 	exclusive 1
@@ -65,14 +68,16 @@ automacro SetThiefQuest {
 
 automacro GoToPyramid {
 	JobID 0
+	JobLevel = 10
 	NpcNear /Thief Guide/
 	InMap moc_prydb1
 	ConfigKey jobQuest GoToPyramid
 	exclusive 1
 	run-once 1
-	macro_delay 20
 	call {
+		pause 5
 		do talknpc 39 129 c r0 c c r0 c c r0 c c c r0 c c c c r0 c 
+		pause 5
 		[
 			do conf lockMap none
 			do conf lockMap none
@@ -88,13 +93,13 @@ automacro GoToPyramid {
 
 automacro GoToIrrelevant {
 	JobID 0
+	JobLevel = 10
 	QuestActive 1013
 	InMap morocc, moc_ruins, moc_prydb1
 	InInventory "Orange Net Mushroom" < 5
 	InInventory "Orange Gooey Mushroom" < 12
 	exclusive 1
 	run-once 1
-	overrideAI 1
 	call {
 		do move moc_ruins &rand(135,140) &rand(119,124)
 		[
@@ -118,19 +123,18 @@ automacro GoToIrrelevant {
 
 automacro TalkToIrrelevant {
 	JobID 0
+	JobLevel = 10
 	QuestActive 1013
 	NpcNear /Mr. Irrelevant/
 	InMap moc_ruins
 	ConfigKey jobQuest TalkToIrrelevant
 	exclusive 1
 	run-once 1
-	overrideAI 1
 	call {
 		do talknpc 141 125 r0
 		pause 0.8
 		do talk cont
 		pause 4
-		
 	}
 }
 
@@ -142,7 +146,6 @@ automacro LeaveMushroomFarm {
 	InInventory "Orange Gooey Mushroom" >= 12
 	exclusive 1
 	run-once 1
-	overrideAI 1
 	call {
 		do conf lockMap none
 		pause 0.8
@@ -159,7 +162,6 @@ automacro ChangeJobToThief {
 	InInventory "Orange Gooey Mushroom" >= 12
 	exclusive 1
 	run-once 1
-	overrideAI 1
 	call {
 		[
 			do conf autoResponse 1
@@ -181,7 +183,6 @@ automacro TalkToComrade {
 	InInventory "Orange Gooey Mushroom" >= 12
 	exclusive 1
 	run-once 1
-	overrideAI 1
 	call {
 		do talknpc 42 133
 		pause 0.8
@@ -202,5 +203,3 @@ automacro TalkToComrade {
 		do quit
 	}
 }
-
-
