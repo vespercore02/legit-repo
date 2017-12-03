@@ -11,7 +11,7 @@ automacro LeaveTrainingGround_Thief {
 			do conf attackAuto -1
 		]
 		do move new_1-4 99 &rand(19,22)
-		do conf tgQuest TalkToFinalTester_Thief
+		do conf jobQuest TalkToFinalTester_Thief
 		log Quest was set to: TalkToFinalTester_Thief
 	}
 	timeout 10
@@ -20,14 +20,14 @@ automacro LeaveTrainingGround_Thief {
 automacro TalkToFinalTester_Thief {
 	JobID 0
 	NpcNear /Final Tester/
-	ConfigKey tgQuest TalkToFinalTester_Thief
+	ConfigKey jobQuest TalkToFinalTester_Thief
 	exclusive 1
 	macro_delay 20
 	call {
 		do talknpc 100 29 c w1 c w1 c w1 c w1 c w1 c r0 c w1 r2 c w1 c w1 c w1 c w1 c
 		[
 			log TalkToFinalTester_Thief: Quest Done
-			do conf tgQuest none
+			do conf jobQuest none
 			do conf -f jobQuest Thief 
 			log jobQuest was set to: Thief
 			do conf route_randomWalk 1
