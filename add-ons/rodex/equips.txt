@@ -11,6 +11,7 @@ macro MailEquips {
 	@equipList = &split(',', $equips)
 	
 	if ($equipList[0] == -1) goto noEquips
+	if ($.job == Archer || $.job == Hunter) goto dontSend
 	if (&config (rodexReceiver) == $.name) goto dontSend
 	if (&config (rodexReceiver) != $.name) goto sendIt
 	

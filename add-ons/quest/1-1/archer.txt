@@ -3,15 +3,67 @@ automacro LeaveTrainingGround_Archer {
 	JobLevel = 10
 	InMap new_1-3
 	exclusive 1
-	run-once 1
 	macro_delay 2
 	call {
-		$trunks = &eval(&invamount(Trunk)+&invamount(Barren Trunk)*2+&invamount(Solid Trunk)*3+&invamount(Fine-grained Trunk)*5)
+	
+		$trunks = &eval(&invamount(Trunk) + &invamount(Barren Trunk) * 2 + &invamount(Solid Trunk) * 3 + &invamount(Fine-grained Trunk) * 5)
+		if ($trunks <= 39) goto FarmTrunks
 		if ($trunks >= 40) goto TrunksComplete
-		log Checking trunks current value: $trunks, not enough.
-		stop
+		
+		:FarmTrunks
+			log Checking trunks current value: $trunks, not enough.
+			
+			# ArcherDefaults - items_control.txt
+			[
+				do iconf Trunk 0 0 0
+				do iconf Barren Trunk 0 0 0
+				do iconf Solid Trunk 0 0 0
+				do iconf Fine-grained Trunk 0 0 0
+			]
+			
+			# pickupitems.txt
+			
+			[
+				do pconf Trunk 2
+				do pconf Barren Trunk 2
+				do pconf Solid Trunk 2
+				do pconf Fine-grained Trunk 2
+			]
+				
+			#mon_control.txt
+			
+			[
+				do mconf Willow 2
+			]
+		
+			stop
 		
 		:TrunksComplete
+			log Enough trunks value gathered. $trunks.
+			
+			# ArcherDefaults - items_control.txt
+			[
+				do iconf Barren Trunk 0 0 0
+				do iconf Fine-grained Trunk 0 0 0
+				do iconf Solid Trunk 0 0 0
+				do iconf Trunk 0 0 0
+			]
+			
+			# pickupitems.txt
+			
+			[
+				do pconf Barren Trunk 0
+				do pconf Fine-grained Trunk 0
+				do pconf Solid Trunk 0
+				do pconf Trunk 0
+			]
+				
+			#mon_control.txt
+			
+			[
+				do mconf Willow 2
+			]
+			
 			[
 				do conf route_randomWalk 0
 				do conf attackAuto -1
@@ -20,6 +72,7 @@ automacro LeaveTrainingGround_Archer {
 			do conf -f jobQuest TalkToFinalTester_Archer
 			log Quest was set to: TalkToFinalTester_Archer
 	}
+	timeout 120
 }
 
 automacro TalkToFinalTester_Archer {
@@ -58,7 +111,7 @@ automacro TalkToFinalTester_Archer {
 		do conf lockMap none
 		do conf jobQuest SetJobQuest_Archer
 	}
-	timeout 30
+	timeout 120
 }
 
 automacro SetJobQuest_Archer {

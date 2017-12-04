@@ -5,7 +5,6 @@ automacro SetDefaults {
 	exclusive 1
 	call {
 		[
-			do conf -f killSteal 1
 			do conf pauseCharServer &rand(1,2)
 			do conf pauseMapServer &rand(1,2)
 			do conf allowedMaps none
@@ -178,24 +177,30 @@ automacro TalkWithBig4 {
 	ConfigKey jobQuest TalkWithBig4
 	NpcNear /Chocolat/
 	exclusive 1
-	macro_delay 30
 	call {
-		
+		pause 5
 		# Chocolat
+		
 		do talknpc 33 172 c w1 c w1 c
+		
+		
 		[
 			do eq Novice Adventurer's Suit [1]
 		]
 		
+		pause 10
 		# Kafra
 		do talknpc 30 176 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 r4
 		
+		pause 30
 		# Cool Event
 		do talknpc 33 176 c w1 c w1 c w1 c c
 		
+		pause 10
 		# Soldier
 		do talknpc 36 176 c w1 c
 		
+		pause 5
 		# Chocolat
 		do talknpc 33 172 c w1 c w1 c w1 c
 		

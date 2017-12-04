@@ -21,8 +21,8 @@ Flower 0
 Unicorn Horn 0
 Hat 0
 Axe [4] -1
-Arrow -1
-Oridecon Arrow -1
+Arrow 0
+Oridecon Arrow 0
 Cutter [4] -1
 Bow [4] -1
 Sandals [1] -1
@@ -38,7 +38,7 @@ Zorro Masque 0
 
 ## pay_dun ##
 Girl's Diary [1] 0
-Fire Arrow -1
+Fire Arrow 0
 Bow [3] 0
 Adventurer's Suit 0
 Nurse Cap 0
@@ -48,3 +48,7 @@ Bongun Hat 0
 
 ## Pick up all items by default ##
 all 1
+Trunk 2
+Barren Trunk 2
+Solid Trunk 2
+Fine-grained Trunk 2

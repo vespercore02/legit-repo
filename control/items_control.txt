@@ -1809,3 +1809,7 @@ Zargon 0 1 0
 25150 0 0 0 0 0 # Hugging_Alice_Pilow
 26100 0 0 0 0 0 # Paradise_Foxtail_Staff_II
 26101 0 0 0 0 0 # Paradise_Foxtail_Staff_III
+Trunk 0 0 0
+Barren Trunk 0 0 0
+Solid Trunk 0 0 0
+Fine-grained Trunk 0 0 0
