@@ -30,5 +30,10 @@ Player Warning
 find out
 instruct
 Sit and type
+greetings
+seems like
+you're in afk mode
+please respond
+how are you
 G.?M.?S
 B.?O.?T
