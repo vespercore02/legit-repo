@@ -80,7 +80,7 @@ automacro GoToPyramid {
 		pause 5
 		[
 			do conf lockMap none
-			do conf lockMap none
+			do conf lockMap_x none
 			do conf lockMap_y none
 		]
 		[
@@ -196,6 +196,8 @@ automacro TalkToComrade {
 		do respawn
 		[
 			do conf lockMap none
+			do conf lockMap_x none
+			do conf lockMap_y none
 			do conf jobQuest none
 		]
 		log Job Change: Thief Quest Done!

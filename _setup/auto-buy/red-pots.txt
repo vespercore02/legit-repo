@@ -1,8 +1,0 @@
-buyAuto Red Potion {
-    label buyRedPots
-    maxAmount 100
-    minAmount 0
-    npc 
-    distance 8
-    zeny 5500
-}
