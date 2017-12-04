@@ -138,6 +138,7 @@ automacro SetJobQuest_Archer {
 			do conf jobQuest none
 		]
 		
+		pause 10
 		log === Archer Job Quest Done! === =
 		do relog 3600
 	}

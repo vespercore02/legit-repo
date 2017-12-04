@@ -48,7 +48,7 @@ Bongun Hat 0
 
 ## Pick up all items by default ##
 all 1
-Trunk 2
-Barren Trunk 2
-Solid Trunk 2
-Fine-grained Trunk 2
+Trunk 0
+Barren Trunk 0
+Solid Trunk 0
+Fine-grained Trunk 0
