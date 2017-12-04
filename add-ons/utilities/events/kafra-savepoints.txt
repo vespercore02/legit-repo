@@ -218,6 +218,9 @@ macro ChangeSavePoints {
 				do ai manual
 				do move alberta &rand(107,111) &rand(54,58)
 				do talknpc 113 60 c r0 n
+				
+				log === Set Save Map to Alberta === =
+				
 				[	
 					do conf saveMap alberta
 					do conf storageAuto $storageOption
@@ -228,10 +231,24 @@ macro ChangeSavePoints {
 					do conf autoMoveOnDeath_y &rand(30,50)
 					do conf autoMoveOnDeath_map alberta
 				]
+				
+				log === Set Sell Option === =
+				
 				[
 					do conf sellAuto $sellOption
 					do conf sellAuto_npc alberta_in 188 21   
 				]
+				
+				log === Set Buy Option === =
+				
+				if ($.job == Archer || $.job == Hunter) {
+					do conf buyArrow.npc alberta_in 188 21
+				}
+				
+				[
+					do conf buyRedPots.npc alberta_in 188 21
+				]
+				
 				do ai on
 				release KafraSavePoints
 				release CheckIfSaved

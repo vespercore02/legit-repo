@@ -107,7 +107,7 @@ macro randomMOD {
 
 macro setStats {
 	switch ($.job) {
-		case (== Acolyte) {	
+		case (== Archer) {	
 			[
 				do conf statsAddAuto 1
 				do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
@@ -115,6 +115,17 @@ macro setStats {
 				do conf statsAdd_over_99 1
 				
 				do conf skillsAddAuto 1
+				do conf skillsAddAuto_list
+			]
+		}
+		case (== Acolyte) {	
+			[
+				do conf statsAddAuto 1
+				do conf statsAddAuto_list 20 agi, 20 dex, 40 agi, 40 dex, 30 vit, 10 int, 80 agi, 80 dex, 40 luk, 30 int
+				do conf statsAddAuto_dontUseBonus 1
+				do conf statsAdd_over_99 1
+				
+				do conf skillsAddAuto 0
 				do conf skillsAddAuto_list AL_HEAL 5, AL_INCAGI 5, AL_DP 5, AL_BLESSING 10, AL_INCAGI 10, AL_RUWACH 1, AL_TELEPORT 2, AL_DEMONBANE 5, AL_WARP 2, AL_ANGELUS 10 
 			]
 		}

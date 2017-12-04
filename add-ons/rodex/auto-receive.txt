@@ -1,5 +1,5 @@
 automacro ReceiveRodex {
-	JobID 10
+	JobID 5, 10
 	exclusive 1
 	macro_delay 3
 	timeout 3600

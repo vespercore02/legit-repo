@@ -1,0 +1,8 @@
+buyAuto Arrow {
+    label buyArrow
+    maxAmount 2000
+    minAmount 0
+    npc 
+    distance 8
+    zeny 2000
+}

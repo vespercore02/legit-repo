@@ -1,95 +1,34 @@
-automacro TrainingGround {
-	InMap new_1-3
-	exclusive 1
-	run-once 1
-	macro_delay 0.5
-	call {
-		[
-		#ArcherDefaults
-		
-		#items_control.txt
-		
-		do iconf Trunk 0 0 0
-		do iconf Barren Trunk 0 0 0
-		do iconf Solid Trunk 0 0 0
-		do iconf Fine-grained Trunk 0 0 0
-		
-		#pickupitems.txt
-		
-		do pconf Trunk 2
-		do pconf Barren Trunk 2
-		do pconf Solid Trunk 2
-		do pconf Fine-grained Trunk 2
-		
-		#mon_control.txt
-		
-		do mconf Willow 2
-		]
-		do conf jobQuest CheckTrunkQuestItems
-		
-	}
-	timeout 30
-}
-
-automacro CountQuestTrunks {
-	ConfigKey jobQuest CheckTrunkQuestItems
+automacro LeaveTrainingGround_Archer {
 	JobID 0
 	JobLevel = 10
 	InMap new_1-3
 	exclusive 1
-	macro_delay 1
+	run-once 1
+	macro_delay 2
 	call {
 		$trunks = &eval(&invamount(Trunk)+&invamount(Barren Trunk)*2+&invamount(Solid Trunk)*3+&invamount(Fine-grained Trunk)*5)
 		if ($trunks >= 40) goto TrunksComplete
 		log Checking trunks current value: $trunks, not enough.
 		stop
-	
+		
 		:TrunksComplete
-			log Enough trunks value gathered. $trunks.
 			[
-				#items_control.txt
-				do iconf Barren Trunk 0 0 0
-				do iconf Fine-grained Trunk 0 0 0
-				do iconf Solid Trunk 0 0 0
-				do iconf Trunk 0 0 0
-				
-				#pickupitems.txt
-				do pconf Barren Trunk 0
-				do pconf Fine-grained Trunk 0
-				do pconf Solid Trunk 0
-				do pconf Trunk 0
+				do conf route_randomWalk 0
+				do conf attackAuto -1
 			]
-			do conf jobQuest LeavingTrainingGround
+			do move new_1-4 99 &rand(19,22)
+			do conf -f jobQuest TalkToFinalTester_Archer
+			log Quest was set to: TalkToFinalTester_Archer
 	}
-	timeout 60
 }
 
-automacro LeavingTrainingGround {
-	ConfigKey jobQuest LeavingTrainingGround
+automacro TalkToFinalTester_Archer {
+	JobID 0
 	JobLevel = 10
-	BaseLevel = 25 #Enable BaseLevel condition to stay longer in TG.
-	InMap new_1-3
-	exclusive 1
-	run-once 1
-	macro_delay 1
-	call {
-		[
-			do conf attackAuto -1
-			do conf route_randomWalk 0
-			do conf lockMap none
-		]
-		do move new_1-4 &rand(96,103) &rand(21,25) #NearFinalTester
-		do conf jobQuest TalktoFinalTester
-	}
-	timeout 30
-}
-
-automacro TalktoFinalTester {
 	NpcNear /Final Tester/
-	ConfigKey jobQuest TalktoFinalTester
+	ConfigKey jobQuest TalkToFinalTester_Archer
 	exclusive 1
-	run-once 1
-	macro_delay 1
+	macro_delay 2
 	call {
 		do talk $.NpcNearLastBinId
 		do talk resp 1 #Take the test
@@ -117,18 +56,18 @@ automacro TalktoFinalTester {
 		do talk resp 0 #Buy the item for him/her
 		do talk resp 0	#Yes for Archer
 		do conf lockMap none
-		do conf jobQuest ArcherJobQuest
+		do conf jobQuest SetJobQuest_Archer
 	}
 	timeout 30
 }
 
-automacro ArcherJobQuest {
-	NpcNear /Archer Guildsman/
+automacro SetJobQuest_Archer {
+	JobID 0
 	JobLevel = 10
-	ConfigKey jobQuest ArcherJobQuest
+	NpcNear /Archer Guildsman/
+	ConfigKey jobQuest SetJobQuest_Archer
 	exclusive 1
-	run-once 1
-	macro_delay 1
+	macro_delay 2
 	call {
 		do talk $.NpcNearLastBinId
 		do talk resp 0 #I want to be an archer
@@ -137,49 +76,17 @@ automacro ArcherJobQuest {
 		do eq Novice Adventurer's Suit [1]
 		do eq Novice Composite Bow [3]
 		do eq Arrow
+		
 		[
-		do conf route_randomWalk 1
-		do conf attackAuto 2
-		do conf sitAuto_hp_lower 40
-		do conf sitAuto_hp_upper 80
-		do conf jobQuest none
-
-		log UnloadingArcherDefaults
-		[
-		#items_control.txt
-		
-		do iconf Trunk 0 1 0
-		do iconf Barren Trunk 0 0 1
-		do iconf Solid Trunk 0 0 1
-		do iconf Fine-grained Trunk 0 0 1
-		
-		#pickupitems.txt
-		
-		do pconf Trunk 1
-		do pconf Barren Trunk 1
-		do pconf Solid Trunk 1
-		do pconf Fine-grained Trunk 1
-		
-		#mon_control.txt
-		
-		do mconf Willow 1
+			do conf route_randomWalk 1
+			do conf attackAuto 2
+			do conf sitAuto_hp_lower 40
+			do conf sitAuto_hp_upper 80
+			do conf jobQuest none
 		]
 		
+		log === Archer Job Quest Done! === =
 		do relog 3600
 	}
-}
-
-automacro ResumeQuestArcher {
-	InMap payon_in02, pay_arche
-	NotInMap new_1-3, new_1-4
-	JobLevel = 10
-	JobIDNot 3
-	run-once 1
-	exclusive 1
-	macro_delay 1
-	call {
-		do move payon_in02 &rand(62,66) &rand(63,67) #ArcherGuildsman
-		do conf jobQuest ArcherJobQuest
-	}
-	timeout 30
+	timeout 60
 }
