@@ -16,7 +16,6 @@ automacro LeaveTrainingGround_Swordsman {
 	}
 }
 
-
 automacro TalkToFinalTester_Swordsman {
 	JobID 0
 	JobLevel = 10
@@ -39,7 +38,7 @@ automacro TalkToFinalTester_Swordsman {
 		pause 0.8
 		[
 			do conf lockMap none
-			do conf jobQuest SetSwordsmanQuest
+			do conf jobQuest SetJobQuest_Swordsman
 			log Quest was set to: SetJobQuest_Swordsman
 		]
 	}
@@ -115,7 +114,7 @@ automacro SwordsmanMaze {
 	JobID 0
 	JobLevel = 10
 	QuestActive 1014
-	InMap sword_1-1 10 245, sword_2-1 10 245, sword_3-1 10 245
+	InMap sword_1-1,sword_2-1,sword_3-1
 	ConfigKey jobQuest SwordsmanMaze
 	exclusive 1
 	macro_delay 1
@@ -199,7 +198,7 @@ automacro SwordsmanMaze {
 	timeout 30
 }
 
-automacro SwordsmanFinishQuest 
+automacro SwordsmanFinishQuest {
 	JobID 0
 	JobLevel = 10
 	QuestActive 1014
