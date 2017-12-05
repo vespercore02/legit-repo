@@ -39,19 +39,43 @@
 
 # All items not mentioned in this file will be automatically stored in storage.
 all 0 1 0
+
+#pay_dun
+Sohee Card 0 0 0
+Munak Card 0 0 0
+Bongun Card 0 0 0
+Archer Skeleton Card 0 0 0
+Soldier Skeleton Card 0 0 0
+Hydra Card 0 0 0
+Magnolia Card 0 0 0
+Eggyra Card 0 0 0
+Mandragora Card 0 0 0
+Nine Tail Card 0 0 0
+Shoes [1] 0 0 0
+Muffler [1] 0 0 0
+Ninja Suit 0 0 0
+
+#gef_fild11
 Red Bandana 0 0 0
 Buckler [1] 0 0 0
 Composite Bow [4] 0 0 0
-Boots [1] 0 0 0
-Shoes [1] 0 0 0
-Muffler [1] 0 0 0
 Iron 0 1 0
 Steel 0 1 0
-Goblin Card 0 0 0
+
+prt_fild10
+Silk Robe [1] 0 0 0
+Creamy Card 0 0 0
+Elder Willow Card 0 0 0
+Savage Babe Card 0 0 0
+Lunatic Card 0 0 0
+
+#mjolnir_10
+Boots [1] 0 0 0
+Angelic Guard [1] 0 0 1
 
 Novice Guard 0 0 1
 Novice Slippers 0 0 1
-Somber Novice Hood 0 0 1 
+Somber Novice Hood 0 0 1
 Tattered Novice Ninja Suit 0 0 1
 Novice Adventurer's Suit [1] 0 0 1
 Novice Cutter [3] 0 0 1
@@ -70,10 +94,10 @@ Novice Potion 0 0 0
 547 50 1 0 # Condensed White Potion
 546 50 1 0 # Condensed Yellow Potion
 506 0 1 0 # Green Potion
-501 25 1 0 # Red Potion
-502 25 1 0 # Orange Potion
-504 25 1 0  # White Potion
-503 25 1 0 # Yellow potion
+501 100 1 0 # Red Potion
+502 100 1 0 # Orange Potion
+504 100 1 0  # White Potion
+503 100 1 0 # Yellow potion
 
 Concentration Potion 10 1 0
 Awakening Potion 10 1 0
@@ -92,8 +116,6 @@ Red Herb 0 0 1
 # You may want to modify these if you're an archer/hunter
 
 Arrow 3000 1 0
-
-
 
 #########################
 ##### SELLING ITEMS #####
@@ -153,7 +175,6 @@ Cotton Shirt [1] 0 0 1
 2408 0 0 1 # Shackles
 2106 0 0 1 # Shield
 2404 0 0 1 # Shoes
-2322 0 0 1 # Silk Robe
 2611 0 0 1 # Silver Ring
 2333 0 0 1 # Silver Robe
 2333 0 0 1 # Silver Robe [1]
@@ -367,7 +388,7 @@ Animal Poop 0 0 1
 737 0 0 1 # Black Ladle
 1034 0 0 1 # Blue Hair
 744 0 0 1 # Bouquet
-7054 0 0 1 # Brigan
+7054 0 1 0 # Brigan
 7158 0 0 1 # Broken Liquor Jar
 7070 0 0 1 # Broken Shell
 7156 0 0 1 # Broken Shuriken
@@ -478,7 +499,7 @@ Garlet 0 0 1
 921 0 0 1 # Mushroom Spore
 1095 0 0 1 # Needle of Alarm
 7102 0 0 1 # Nightmare
-1022 0 0 1 # Nine Tails
+1022 0 1 0 # Nine Tails
 960 0 0 1 # Nipper
 941 0 0 1 # Nose Ring
 5037 0 0 1 # Nut Shell
@@ -1788,3 +1809,7 @@ Zargon 0 1 0
 25150 0 0 0 0 0 # Hugging_Alice_Pilow
 26100 0 0 0 0 0 # Paradise_Foxtail_Staff_II
 26101 0 0 0 0 0 # Paradise_Foxtail_Staff_III
+Trunk 0 0 0
+Barren Trunk 0 0 0
+Solid Trunk 0 0 0
+Fine-grained Trunk 0 0 0

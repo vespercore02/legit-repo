@@ -1,0 +1,38 @@
+attackSkillSlot Bash {
+    lvl 10
+    dist 1.5
+    sp > 10
+    aggressives >= 3  # change value here
+    inLockOnly 1
+    timeout 5
+    monsters
+    maxAttempts 
+    maxUses 4
+}
+
+useSelf_skill Magnum Break {
+    lvl 10
+    dist 1.5
+    sp > 30%
+    aggressives >= 3
+    inLockOnly 1
+    notInTown 1
+}
+
+useSelf_skill Endure {
+    lvl 10
+    sp > 10%
+    whenStatusInactive Endure
+    onAction attack
+    inLockOnly 1
+    notWhileSitting 1
+}
+
+attackSkillSlot Provoke {
+    lvl 10
+    sp >10
+    monsters
+    maxUses 1
+    inLockOnly 1
+    timeout 10
+}

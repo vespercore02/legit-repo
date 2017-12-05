@@ -1,5 +1,5 @@
 automacro ReceiveRodex {
-	JobID 10
+	JobID 5, 10
 	exclusive 1
 	macro_delay 3
 	timeout 3600
@@ -7,31 +7,42 @@ automacro ReceiveRodex {
 }
 
 macro GetRodexItems {
-	do rodex close
-	do rodex open
-	do rodex refresh
+	if (&config(rodexReceiver) != $.name) goto stopReceiving
+	if (&config(rodexReceiver) == $.name) goto getItems
 	
-	if (count_rodex() < 1) goto stopRodex
-	if (count_rodex() > 0) goto receiveRodex
-	
-	:stopRodex
-		log No rodex mail available
-		do rodex close
+	:stopReceiving
+		[
+			log ================================= =
+			log = You are not the receiver
+			log ================================= =
+		]
+		lock ReceiveRodex
 		stop
-	:receiveRodex
-		log It's mail time!!!
-		$i = 0
-		while ($i < count_rodex()) {
-			log You are opening Mail ID: check_rodex_id($i)
-			$currentID = check_rodex_id($i)
-			do rodex read $currentID
-			do rodex getitems
-			do rodex getzeny
-			do rodex delete $currentID
-			$i++
-		}
-		do rodex close
-		stop
+	:getItems
+		do rodex open
+		do rodex refresh
+
+		if (count_rodex() < 1) goto stopRodex
+		if (count_rodex() > 0) goto receiveRodex
+
+		:stopRodex
+			log No rodex mail available
+			do rodex close
+			stop
+		:receiveRodex
+			log It's mail time!!!
+			$i = 0
+			while ($i < count_rodex()) {
+				log You are opening Mail ID: check_rodex_id($i)
+				$currentID = check_rodex_id($i)
+				do rodex read $currentID
+				do rodex getitems
+				do rodex getzeny
+				do rodex delete $currentID
+				$i++
+			}
+			do rodex close
+			stop
 }
 
 sub check_rodex_id {

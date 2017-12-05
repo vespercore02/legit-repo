@@ -90,7 +90,7 @@ automacro RodexBugLeg {
 
 automacro RodexOBB {
 	Zeny >= 2500
-	InStorage "Old Blue Box" >= 50
+	InStorage "Old Blue Box" >= 25
 	StorageOpened 1
 	exclusive 1
 	macro_delay 2
@@ -108,9 +108,29 @@ automacro RodexFeather {
 	call StorageRodex
 }
 
+automacro RodexDB {
+	Zeny >= 2500
+	InStorage "Dead Branch" >= 100
+	StorageOpened 1
+	exclusive 1
+	macro_delay 2
+	timeout 20
+	call StorageRodex
+}
+
+automacro RodexAmulet {
+	Zeny >= 2500
+	InStorage "Amulet" >= 25
+	StorageOpened 1
+	exclusive 1
+	macro_delay 2
+	timeout 20
+	call StorageRodex
+}
+
 macro StorageRodex {
 	$itemName = $.InStorageLast
-		
+	
 	do ai manual
 	
 	if ($.storageopen == 1) {
@@ -143,4 +163,3 @@ macro StorageRodex {
 	
 	do ai on
 }
-

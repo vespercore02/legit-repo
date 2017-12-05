@@ -3,19 +3,16 @@
 # Commands
 #_____________________________________________________________________
 
-macro setReceiver1 {
+macro setMyReceiver {
 	$receiver = none
 	do conf rodexReceiver $receiver
 }
 
-macro setReceiver2 {
-	$receiver = none
-	do conf rodexReceiver $receiver
-}
-
-macro setConfig {
+macro setFarmer {
+	log === Set Defaults === =
 	[
-		do conf -f killSteal 1
+		do conf autoResponse 1
+		do conf autoResponseOnHeal 1
 		do conf pauseCharServer &rand(1,2)
 		do conf pauseMapServer &rand(1,2)
 		do conf attackAuto 2
@@ -23,6 +20,7 @@ macro setConfig {
 		do conf allowedMaps none
 		do conf allowedMaps_reaction 0
 		do conf attackAuto_inLockOnly 2
+		do conf dcPause 0
 		do conf dcOnServerClose 1
 		do conf dcOnServerShutDown 1
 		do conf partyAuto 2
@@ -37,19 +35,109 @@ macro setConfig {
 		do conf logConsole 0
 		do conf sleepTime 150000			
 	]
+	log === Setting Defaults Done! === =
+	
+	log === Setting AutoMap === =
+	
+	[
+		do conf -f autoMapChange 0
+		do conf -f autoMapChange_time 7200
+		do conf -f autoMapChange_timeSeed 7200
+		do conf -f autoMapChange_list none
+	]
+	
+	log === Setting AutoMap Done! === =
+}
+
+macro randomMOD {
+	switch (&config(saveMap)) {
+		case (== prt_fild05) {
+			[	
+				do conf saveMap prt_fild05
+				do conf storageAuto 1
+				do conf storageAuto_npc prt_fild05 290 224
+				do conf storageAuto_npc_steps c r1 n
+				do conf autoMoveOnDeath 1
+				do conf autoMoveOnDeath_x &rand(260,280)
+				do conf autoMoveOnDeath_y &rand(200,220)
+				do conf autoMoveOnDeath_map prt_fild05
+			]
+			[
+				do conf sellAuto 1
+				do conf sellAuto_npc prt_fild05 290 221 
+			]
+		}
+		case (== payon) {
+			[	
+				do conf saveMap payon
+				do conf storageAuto 1
+				do conf storageAuto_npc payon 175 226 
+				do conf storageAuto_npc_steps c r1 n
+				do conf autoMoveOnDeath 1
+				do conf autoMoveOnDeath_x &rand(160,170)
+				do conf autoMoveOnDeath_y &rand(200,220)
+				do conf autoMoveOnDeath_map payon
+			]
+			[
+				do conf sellAuto 1
+				do conf sellAuto_npc payon 159 96 
+			]
+		}
+		case (== prontera) {
+			[
+				do conf saveMap prontera
+				do conf storageAuto 1
+				do conf storageAuto_npc prontera 151 29
+				do conf storageAuto_npc_steps c r1 n
+				do conf autoMoveOnDeath 1
+				do conf autoMoveOnDeath_x &rand(120,140)
+				do conf autoMoveOnDeath_y &rand(10,25)
+				do conf autoMoveOnDeath_map prontera
+			]
+			[
+				do conf sellAuto 1
+				do conf sellAuto_npc payon 159 96 
+			]
+		}
+		else {
+			stop
+		}
+	}
 }
 
 macro setStats {
 	switch ($.job) {
-		case (== Acolyte) {	
+		case (== Archer) {	
 			[
 				do conf statsAddAuto 1
-				do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
+				do conf statsAddAuto_list 20 agi, 20 dex, 10 int, 40 agi, 40 dex, 30 vit, 30 int, 80 agi, 40 luk
 				do conf statsAddAuto_dontUseBonus 1
 				do conf statsAdd_over_99 1
 				
 				do conf skillsAddAuto 1
+				do conf skillsAddAuto_list
+			]
+		}
+		case (== Acolyte) {	
+			[
+				do conf statsAddAuto 1
+				do conf statsAddAuto_list 20 agi, 20 dex, 40 agi, 40 dex, 30 vit, 10 int, 80 agi, 80 dex, 40 luk, 30 int
+				do conf statsAddAuto_dontUseBonus 1
+				do conf statsAdd_over_99 1
+				
+				do conf skillsAddAuto 0
 				do conf skillsAddAuto_list AL_HEAL 5, AL_INCAGI 5, AL_DP 5, AL_BLESSING 10, AL_INCAGI 10, AL_RUWACH 1, AL_TELEPORT 2, AL_DEMONBANE 5, AL_WARP 2, AL_ANGELUS 10 
+			]
+		}
+		case (== Swordsman) {	
+			[
+				do conf statsAddAuto 1
+				do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 40 agi, 30 str, 40 dex, 30 vit, 60 str, 80 agi
+				do conf statsAddAuto_dontUseBonus 1
+				do conf statsAdd_over_99 1
+				
+				do conf skillsAddAuto 1
+				do conf skillsAddAuto_list SM_SWORD 1, SM_TWOHAND 10,  SM_RECOVERY 10, SM_BASH 10, SM_PROVOKE 5, SM_MAGNUM 4, SM_ENDURE 10
 			]
 		}
 		case (== Priest) {
@@ -93,28 +181,6 @@ macro setStats {
 			
 			do conf skillsAddAuto 0
 			do conf skillsAddAuto_list none
-		}
-	}
-}
-
-macro setTargets {
-	switch ($.map) {
-		case (== gef_fild11) {
-			[
-				do mconf Mace Goblin 1 0 1
-				do mconf Axe Goblin 1 0 1
-				do mconf Dagger Goblin 1 0 1
-				do mconf Archer Goblin 1 0 1
-			]
-		}
-		case (== mjolnir_10) {
-			[
-				do mconf Argiope 1 0 1
-				do mconf Poring	0 0 0
-			]
-		}
-		else {
-			stop
 		}
 	}
 }

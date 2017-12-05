@@ -4,7 +4,7 @@ useSelf_skill Twohand Quicken {
     whenStatusInactive Twohand Quicken
     notInTown 1
     onAction attack
-    timeout 1000
+    timeout 600
 }
 
 attackSkillSlot Bowling Bash {

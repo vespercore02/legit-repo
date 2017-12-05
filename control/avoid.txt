@@ -6,7 +6,9 @@ iRO GM 74	1 0
 iRO GM 78	1 0
 iRO GM 88	1 0
 GM Anubis	1 0
-Support Game Master 1 0
+Support Game Master	1 0
+@~ AmAz0N#GaNgStReSS~@	1 0
+
 
 [ID]
 231656 1 0 

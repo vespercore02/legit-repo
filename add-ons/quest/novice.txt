@@ -5,7 +5,6 @@ automacro SetDefaults {
 	exclusive 1
 	call {
 		[
-			do conf -f killSteal 1
 			do conf pauseCharServer &rand(1,2)
 			do conf pauseMapServer &rand(1,2)
 			do conf allowedMaps none
@@ -55,8 +54,7 @@ automacro SetQuest {
 	priority 1
 	exclusive 1
 	call {
-		do conf -f tgQuest none
-		do conf -f tgQuest TalkWithGramps
+		do conf -f jobQuest TalkWithGramps
 		log Quest was set to: TalkWithGramps
 		do move 143 111
 	}
@@ -66,50 +64,53 @@ automacro SetQuest {
 automacro TalkWithGramps {
 	JobID 0
 	QuestInactive 62837
-	ConfigKey tgQuest TalkWithGramps
+	ConfigKey jobQuest TalkWithGramps
 	NpcNear /Gramps/
 	exclusive 1
-	macro_delay 20
 	call {
+		pause 5
 		do talknpc 148 112 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 r="No" r="No" r="No" r="No" r="No" r="Yes"
+		pause 0.5
 		do talk 2
 		[
 			log TalkWithGramps: Quest Done
-			do conf tgQuest TalkWithSprakki
+			do conf jobQuest TalkWithSprakki
 			log Quest was set to: TalkWithSprakki
 		]
-		stop
 	}
+	timeout 60
 }
 
 automacro TalkWithSprakki {
 	JobID 0
 	QuestInactive 7117
-	ConfigKey tgQuest TalkWithSprakki
+	ConfigKey jobQuest TalkWithSprakki
 	NpcNotNear /Sprakki/
 	exclusive 1
-	macro_delay 10
 	call {
 		pause 5
 		do move 100 23
+		pause 5
 		do talknpc 100 29 c w1 c w1 c w1 c w1 c
+		pause 0.8
 		do talknpc 100 29 c w1 c w1 r0 c w1 c
 		[
 			log TalkWithSprakki: Quest Done
-			do conf tgQuest TalkWithBrade
+			do conf jobQuest TalkWithBrade
 			log Quest was set to: TalkWithBrade
 		]
 	}
+	timeout 60
 }
 
 automacro TalkWithBrade {
 	JobID 0
 	QuestActive 7118
-	ConfigKey tgQuest TalkWithBrade
+	ConfigKey jobQuest TalkWithBrade
 	NpcNear /Brade/
 	exclusive 1
-	macro_delay 20
 	call {
+		pause 5
 		do talknpc 100 105 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c
 		[
 			do eq Somber Novice Hood
@@ -119,20 +120,22 @@ automacro TalkWithBrade {
 			do eq Tattered Novice Ninja Suit
 			do eq Novice Main-Gauche
 		]
+		pause 5
 		do talknpc 100 105 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c
 		[
 			log TalkWithBrade: Quest Done
-			do conf tgQuest TalkWithJinha
+			do conf jobQuest TalkWithJinha
 			log Quest was set to: TalkWithJinha
 		]
 		do move 115 118
 	}
+	timeout 60
 }
 
 automacro TalkWithJinha {
 	JobID 0
 	QuestActive 7120
-	ConfigKey tgQuest TalkWithJinha
+	ConfigKey jobQuest TalkWithJinha
 	NpcNear /Jinha/
 	exclusive 1
 	macro_delay 15
@@ -140,17 +143,18 @@ automacro TalkWithJinha {
 		do talknpc 115 120 c w1 r0 c w1 c w1 c
 		[
 			log TalkWithJinha: Quest Done
-			do conf tgQuest TalkWithBradeAgain
+			do conf jobQuest TalkWithBradeAgain
 			log Quest was set to: TalkWithBradeAgain
 		]
 		do move 100 110
 	}
+	timeout 60
 }
 
 automacro TalkWithBradeAgain {
 	JobID 0
 	QuestActive 7120
-	ConfigKey tgQuest TalkWithBradeAgain
+	ConfigKey jobQuest TalkWithBradeAgain
 	NpcNear /Brade/
 	exclusive 1
 	macro_delay 10
@@ -159,52 +163,65 @@ automacro TalkWithBradeAgain {
 		do talknpc 100 105 c w1 r1
 		[
 			log TalkWithBradeAgain: Quest Done
-			do conf tgQuest TalkWithBig4
+			do conf jobQuest TalkWithBig4
 			log Quest was set to: TalkWithBradeAgain
 		]
 		do move 74 106
 	}
+	timeout 60
 }
 
 automacro TalkWithBig4 {
 	JobID 0
 	QuestInactive 7121
-	ConfigKey tgQuest TalkWithBig4
+	ConfigKey jobQuest TalkWithBig4
 	NpcNear /Chocolat/
 	exclusive 1
-	macro_delay 30
 	call {
-		
+		pause 5
 		# Chocolat
+		
 		do talknpc 33 172 c w1 c w1 c
+		
+		
 		[
 			do eq Novice Adventurer's Suit [1]
 		]
 		
+		pause 10
 		# Kafra
 		do talknpc 30 176 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 c w1 r4
 		
+		pause 30
 		# Cool Event
 		do talknpc 33 176 c w1 c w1 c w1 c c
 		
+		pause 10
 		# Soldier
 		do talknpc 36 176 c w1 c
 		
+		pause 5
 		# Chocolat
 		do talknpc 33 172 c w1 c w1 c w1 c
 		
 		[
 			log TalkWithBig4: Quest Done
-			do conf tgQuest HitTheGrounds
+			do conf jobQuest HitTheGrounds
 			log Quest was set to: HitTheGrounds
 		]
 	}
-	timeout 60
+	timeout 120
 }
+
+#TODO
+#7123
+#7124
+#7126
+#7127
 
 automacro HitTheGrounds {
 	JobID 0
-	ConfigKey tgQuest HitTheGrounds
+	ConfigKey jobQuest HitTheGrounds
 	InMap new_1-3
 	exclusive 1
 	run-once 1

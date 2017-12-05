@@ -11,7 +11,7 @@ automacro LeaveTrainingGround_Acolyte {
 			do conf attackAuto -1
 		]
 		do move new_1-4 99 &rand(19,22)
-		do conf tgQuest TalkToFinalTester_Acolyte
+		do conf -f jobQuest TalkToFinalTester_Acolyte
 		log Quest was set to: TalkToFinalTester_Acolyte
 	}
 	timeout 10
@@ -20,7 +20,7 @@ automacro LeaveTrainingGround_Acolyte {
 automacro TalkToFinalTester_Acolyte {
 	JobID 0
 	NpcNear /Final Tester/
-	ConfigKey tgQuest TalkToFinalTester_Acolyte
+	ConfigKey jobQuest TalkToFinalTester_Acolyte
 	exclusive 1
 	run-once 1
 	macro_delay 20
@@ -28,18 +28,18 @@ automacro TalkToFinalTester_Acolyte {
 		do talknpc 100 29 c w1 c w1 c w1 c w1 c w1 c r0 c w1 r1 c w1 c w1 c w1 c w1 c
 		[
 			log TalkToFinalTester_Acolyte: Quest Done
-			do conf tgQuest none
+			do conf jobQuest none
 			do conf -f jobQuest Acolyte 
 			log jobQuest was set to: Acolyte
 			do conf route_randomWalk 1
 			
 			do conf attackAuto 2
-			do conf statsAddAuto 1
+			#do conf statsAddAuto 1
 			#do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
-			do conf statsAddAuto_dontUseBonus 1
-			do conf statsAdd_over_99 1
+			#do conf statsAddAuto_dontUseBonus 1
+			#do conf statsAdd_over_99 1
 			
-			do conf skillsAddAuto 1
+			#do conf skillsAddAuto 1
 			#do conf skillsAddAuto_list AL_HEAL 5, AL_INCAGI 5, AL_DP 5, AL_BLESSING 10, AL_INCAGI 10, AL_RUWACH 1, AL_TELEPORT 2, AL_DEMONBANE 5, AL_WARP 2, AL_ANGELUS 10 
 		]
 	}
