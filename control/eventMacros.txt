@@ -27,10 +27,10 @@
 #!include ..\add-ons\utilities\events\pecopeco-trainer.txt
 
 # Quest
-!include ..\add-ons\quest\novice.txt
+#!include ..\add-ons\quest\novice.txt
 #!include ..\add-ons\quest\1-1\archer.txt
 #!include ..\add-ons\quest\1-1\thief.txt
-!include ..\add-ons\quest\1-1\swordsman.txt
+#!include ..\add-ons\quest\1-1\swordsman.txt
 #!include ..\add-ons\quest\1-1\acolyte.txt
 #!include ..\add-ons\quest\2-1\priest.txt
 #!include ..\add-ons\quest\2-2\rogue.txt

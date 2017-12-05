@@ -90,10 +90,10 @@ macro ChangeSavePoints {
 				if ($.job == Archer || $.job == Hunter) {
 					log === Class Type Archer/Hunter === = 
 					log === Set autoBuy Arrows === =
-					do conf buyArrow.npc prt_fild05 290 224
+					do conf buyArrow.npc prt_fild05 290 221
 				}
 				
-				do conf buyRedPots.npc prt_fild05 290 224
+				do conf buyRedPots.npc prt_fild05 290 221
 				
 				do ai on
 				release KafraSavePoints
