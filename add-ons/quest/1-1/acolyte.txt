@@ -11,7 +11,7 @@ automacro LeaveTrainingGround_Acolyte {
 			do conf attackAuto -1
 		]
 		do move new_1-4 99 &rand(19,22)
-		do conf -f jobQuest TalkToFinalTester_Acolyte
+		do conf jobQuest TalkToFinalTester_Acolyte
 		log Quest was set to: TalkToFinalTester_Acolyte
 	}
 	timeout 10
@@ -25,31 +25,21 @@ automacro TalkToFinalTester_Acolyte {
 	run-once 1
 	macro_delay 20
 	call {
-		do talknpc 100 29 c w1 c w1 c w1 c w1 c w1 c r0 c w1 r1 c w1 c w1 c w1 c w1 c
 		[
-			log TalkToFinalTester_Acolyte: Quest Done
-			do conf jobQuest none
-			do conf -f jobQuest Acolyte 
-			log jobQuest was set to: Acolyte
-			do conf route_randomWalk 1
-			
-			do conf attackAuto 2
-			#do conf statsAddAuto 1
-			#do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
-			#do conf statsAddAuto_dontUseBonus 1
-			#do conf statsAdd_over_99 1
-			
-			#do conf skillsAddAuto 1
-			#do conf skillsAddAuto_list AL_HEAL 5, AL_INCAGI 5, AL_DP 5, AL_BLESSING 10, AL_INCAGI 10, AL_RUWACH 1, AL_TELEPORT 2, AL_DEMONBANE 5, AL_WARP 2, AL_ANGELUS 10 
+			do conf lockMap none
+			do conf attackAuto -1
+			do conf autoResponse 1
+			do conf autoTalkCont 1
 		]
+		do talknpc 100 29 c w1 c w1 c w1 c w1 c w1 c r0 c w1 r1 c w1 c w1 c w1 c w1 c
+		log TalkToFinalTester_Acolyte: Quest Done
 	}
 }
 
 automacro SetAcolyteQuest {
 	QuestInactive 1001, 1002, 1003
-	ConfigKey jobQuest Acolyte
 	JobID 0
-	InMap prt_church
+	InMap prontera,prt_church
 	exclusive 1
 	run-once 1
 	call {
@@ -96,27 +86,27 @@ macro TalkWithPriest {
 	switch ($.QuestActiveLastID) {
 		case (= 1001) {
 			do talk &npc(365 255)
-			do conf jobQuest goBackToChurch
+			do conf jobQuest GoBackToChurch
 		}
 		case (= 1002) {
 			do talk &npc(41 355)
-			do conf jobQuest goBackToChurch
+			do conf jobQuest GoBackToChurch
 		}
 		case (= 1003) {
 			do talk &npc(208 218)
-			do conf jobQuest goBackToChurch
+			do conf jobQuest GoBackToChurch
 		}
 	}
-	set exclusive 0
+	#set exclusive 0
 	pause 5
 	stop
 }
 
 automacro GoBackToChurch {
-	ConfigKey jobQuest goBackToChurch
+	QuestActive 1001, 1002, 1003
+	ConfigKey jobQuest GoBackToChurch
 	JobID 0
 	exclusive 1
-	run-once 1
 	macro_delay 2
 	call {
 		do move prt_church &rand(180,184) 38
@@ -126,7 +116,6 @@ automacro GoBackToChurch {
 }
 
 automacro ChangeToAcolyte {
-	QuestActive 1001, 1002, 1003
 	ConfigKey jobQuest ChangeToAcolyte
 	NpcNear /Cleric/
 	exclusive 1
@@ -136,6 +125,7 @@ automacro ChangeToAcolyte {
 		do talk $.NpcNearLastBinId
 		do talk resp 0
 		do conf jobQuest none
+		log === Acolyte Job Quest Done! === =
 		do relog 3600
 	}
 }

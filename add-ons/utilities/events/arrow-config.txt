@@ -4,6 +4,7 @@ automacro equip_Arrow {
 	priority 0
 	timeout 120
 	call {
+		do eq $.InInventoryLast
 		do conf attackEquip_arrow $.InInventoryLast
 	}
 }
@@ -14,6 +15,7 @@ automacro equip_SilverArrow {
 	priority 1
 	timeout 120
 	call {
+		do eq $.InInventoryLast
 		do conf attackEquip_arrow $.InInventoryLast
 	}
 }
@@ -24,6 +26,7 @@ automacro equip_FireArrow {
 	priority 2
 	timeout 120
 	call {
+		do eq $.InInventoryLast
 		do conf attackEquip_arrow $.InInventoryLast
 	}
 }
