@@ -11,7 +11,7 @@ automacro LeaveTrainingGround_Thief {
 			do conf attackAuto -1
 		]
 		do move new_1-4 99 &rand(19,22)
-		do conf -f jobQuest TalkToFinalTester_Thief
+		do conf jobQuest TalkToFinalTester_Thief
 		log Quest was set to: TalkToFinalTester_Thief
 	}
 	timeout 10
@@ -21,7 +21,6 @@ automacro TalkToFinalTester_Thief {
 	JobID 0
 	JobLevel = 10
 	NpcNear /Final Tester/
-	ConfigKey jobQuest TalkToFinalTester_Thief
 	exclusive 1
 	call {
 		pause 5
@@ -29,9 +28,8 @@ automacro TalkToFinalTester_Thief {
 		pause 5
 		[
 			log TalkToFinalTester_Thief: Quest Done
-			do conf jobQuest none
-			do conf -f jobQuest Thief 
-			log jobQuest was set to: Thief
+			do conf jobQuest SetThiefQuest 
+			log jobQuest was set to: SetThiefQuest
 			do conf route_randomWalk 1
 			do conf attackAuto 2
 			#do conf statsAddAuto 1
@@ -49,9 +47,8 @@ automacro SetThiefQuest {
 	JobID 0
 	JobLevel = 10
 	InMap moc_ruins, morocc
-	ConfigKey jobQuest Thief
+	ConfigKey jobQuest SetThiefQuest
 	exclusive 1
-	run-once 1
 	call {
 		[
 			do conf lockMap moc_prydb1 
@@ -64,6 +61,7 @@ automacro SetThiefQuest {
 			log jobQuest was set to: GoToPyramid
 		]
 	}
+	timeout 60
 }
 
 automacro GoToPyramid {
@@ -73,7 +71,6 @@ automacro GoToPyramid {
 	InMap moc_prydb1
 	ConfigKey jobQuest GoToPyramid
 	exclusive 1
-	run-once 1
 	call {
 		pause 5
 		do talknpc 39 129 c r0 c c r0 c c r0 c c c r0 c c c c r0 c 
@@ -89,6 +86,7 @@ automacro GoToPyramid {
 			log jobQuest was set to: GoToIrrelevant
 		]
 	}
+	timeout 60
 }
 
 automacro GoToIrrelevant {
@@ -99,7 +97,6 @@ automacro GoToIrrelevant {
 	InInventory "Orange Net Mushroom" < 5
 	InInventory "Orange Gooey Mushroom" < 12
 	exclusive 1
-	run-once 1
 	call {
 		do move moc_ruins &rand(135,140) &rand(119,124)
 		[
@@ -118,7 +115,7 @@ automacro GoToIrrelevant {
 			do conf itemsTakeGreed 0
 		]
 	}
-	timeout 5
+	timeout 60
 }
 
 automacro TalkToIrrelevant {
@@ -161,7 +158,6 @@ automacro ChangeJobToThief {
 	InInventory "Orange Net Mushroom" >= 5
 	InInventory "Orange Gooey Mushroom" >= 12
 	exclusive 1
-	run-once 1
 	call {
 		[
 			do conf autoResponse 1

@@ -232,3 +232,14 @@ automacro HitTheGrounds {
 		]
 	}
 }
+
+automacro RespawnToGrounds {
+	JobID 0
+	JobLevel < 10
+	InMap new_1-4
+	exclusive 1
+	call {
+		do respawn
+	}
+	timeout 10
+}

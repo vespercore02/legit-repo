@@ -108,7 +108,7 @@ my $myHooks = Plugins::addHooks(
 	['packet_skilluse',							\&detectGM_analyseSkillCaster],
 	['is_casting',								\&detectGM_analyseSkillCaster],
 	['teleport_sent',							\&detectGM_tpFlag_on],
-	#['packet/public_cHeadgear',					\&detectGM_tpFlag_on],
+	#['packet/public_chat',					\&detectGM_tpFlag_on],
 	['packet/warp_portal_list',					\&detectGM_tpFlag_on], # new!
 	['packet/npc_talk',							\&detectGM_addNPCtalkTolerance],
 	['packet/npc_talk_continue',				\&detectGM_addNPCtalkTolerance],
@@ -116,7 +116,7 @@ my $myHooks = Plugins::addHooks(
 	['packet/npc_talk_responses',				\&detectGM_addNPCtalkTolerance],
 	['packet/npc_talk_number',					\&detectGM_addNPCtalkTolerance],
 	['packet/npc_talk_text',					\&detectGM_addNPCtalkTolerance],
-	['packet/cHeadgear_user_leave',					\&detectGM_addNPCtalkTolerance],
+	['packet/chat_user_leave',					\&detectGM_addNPCtalkTolerance],
 	['self_died',								\&detectGM_tpFlag_on],
 	['packet/login_error',						\&detectGM_handleLogin],
 	['packet/errors',							\&detectGM_handleLogin],
@@ -132,7 +132,7 @@ my $myHooks = Plugins::addHooks(
 	
 	# broadcast
 	['packet_pre/local_broadcast',				\&broadcast],
-	['packet_pre/system_cHeadgear',					\&broadcast],
+	['packet_pre/system_chat',					\&broadcast],
 	#['packet_sysMsg',					\&broadcast],
 	['Commands::run/pre',						\&cmdReload],
 	['Actor::route::map',						\&foresee_route_danger]
@@ -410,7 +410,7 @@ sub detectGM_analyseSkillCaster {
 					&core_eventsReaction('unknown_buffed_me');
 					return;
 				}
-			} elsif ($args->{skillID} == 476) { # remoção total
+			} elsif ($args->{skillID} == 476) { # remoï¿½ï¿½o total
 					error sprintf("Unknown Player %s (%s) gave you %s! Disconnecting...\n", $castername->{name}, unpack("V", $args->{sourceID}), $skillname), "koreShield_detect";
 					&core_eventsReaction('fullstripped');
 					return; 
@@ -420,13 +420,13 @@ sub detectGM_analyseSkillCaster {
 				return;
 			}
 		} else { # ground skills
-			if ($args->{skillID} == 70) { # santuário
+			if ($args->{skillID} == 70) { # santuï¿½rio
 				my %skill_cast_pos;
 				($skill_cast_pos{x}, $skill_cast_pos{y}) = ($args->{x}, $args->{y});
 				if (&detectGM_analyseSkillCaster_isInsideSanctuary(\%skill_cast_pos)) {
 					&core_eventsReaction('monster_sanctuary');
 				}
-			} elsif ($args->{skillID} == 12) { # escudo mágico
+			} elsif ($args->{skillID} == 12) { # escudo mï¿½gico
 				my %skill_cast_pos;
 				($skill_cast_pos{x}, $skill_cast_pos{y}) = ($args->{x}, $args->{y});
 				if (&detectGM_analyseSkillCaster_isInsideSW(\%skill_cast_pos)) {
@@ -502,9 +502,9 @@ sub detectGM_flyOrButterflyWing_tpflag {
 }
 
 sub detectGM_manner {
-	error("CHeadgear blocked, banned, disconnected...\n"), "koreShield_detect";
-	&core_eventsReaction('cHeadgear_blocked');
-	#pushover('CHeadgear blocked ',' CHeadgear blocked, we are being banned, disconnected ...', 1);
+	error("Chat blocked, banned, disconnected...\n"), "koreShield_detect";
+	&core_eventsReaction('chat_blocked');
+	#pushover('Chat blocked ',' Chat blocked, we are being banned, disconnected ...', 1);
 }
 
 sub detectGM_perfectHide {
@@ -553,7 +553,7 @@ sub broadcast {
 	if ($message =~ /\Q$char->{'name'}/i ) {
 		error sprintf("Received a broadcast with our nickname !\n".
 						"Broadcast: %s \n", $message), "koreShield_broadcast";
-		cHeadgearLog("koreShield.broadcast", "$message\n");
+		chatLog("koreShield.broadcast", "$message\n");
 		kLog($message."\n", 'broadcast_nickname.log');
 		&core_eventsReaction('broadcast_nickname');
 		#pushover('Broadcast - Nickname', $message, 1);
@@ -563,13 +563,13 @@ sub broadcast {
 	} elsif (isIn_Array_Regex($message, \@{$core_databases{BROADCASTBLACKLIST}}, 1)) {
 		error sprintf("Match: %s \n", isIn_Array_Regex($message, \@{$core_databases{BROADCASTBLACKLIST}}, 1)), "koreShield_broadcast";
 		error sprintf("Received a blacklisted broadcast.\nForbidden broadcast: %s \n", $message), "koreShield_broadcast";
-		cHeadgearLog("koreShield.broadcast", "$message\n");
+		chatLog("koreShield.broadcast", "$message\n");
 		kLog($message."\n", 'broadcast_blacklist.log');
 		&core_eventsReaction('broadcast_blacklisted');
 		#pushover('Broadcast - Blacklist', $message, 1);
 	} else {
-		error sprintf("Received a broadcast tHeadgears not inside whitelist or blacklist.\nForbidden broadcast: %s \n", $message), "koreShield_broadcast";
-		cHeadgearLog("koreShield.broadcast", "$message\n");
+		error sprintf("Received a broadcast thats not inside whitelist or blacklist.\nForbidden broadcast: %s \n", $message), "koreShield_broadcast";
+		chatLog("koreShield.broadcast", "$message\n");
 		kLog($message."\n", 'broadcast_unknown.log');
 		&core_eventsReaction('broadcast_unknown');
 		#pushover('Broadcast - Unknown', $message, 0);
@@ -766,7 +766,7 @@ sub core_actorInfo {
 		
 		kLog($msg, 'detect_log.log');
 		
-		cHeadgearLog("koreShield.ping", "GM Detected! ID: $ID Name: ".unpack("Z24", $args->{name})." \n");
+		chatLog("koreShield.ping", "GM Detected! ID: $ID Name: ".unpack("Z24", $args->{name})." \n");
 		
 		foreach my $action_item (@ping_notWhileQueued) {
 			if (existsInList($action_item, AI::action())) {
@@ -1041,10 +1041,10 @@ sub core_eventsReaction {
 		error("Sent notification to other bots.", "koreShield");
 		error sprintf("Reason: %s !\n", $danger), "koreShield";
 	}
-	cHeadgearLog("koreShield.core", "Danger: $danger \n");
+	chatLog("koreShield.core", "Danger: $danger \n");
 	#warning "THIS SHIT WORKS";
 	if(grep {$_ eq $danger} ('actor_found', 'banned', 'alien_skill', 'blacklisted_used_skill', 'broadcast_blacklisted',
-		'broadcast_nickname', 'cHeadgear_blocked', 'forced_teleport', 'forced_teleport_same_cell', 'fullstripped', 'actor_disguised',
+		'broadcast_nickname', 'chat_blocked', 'forced_teleport', 'forced_teleport_same_cell', 'fullstripped', 'actor_disguised',
 		'forced_status', 'gm_used_skill', 'monster_sanctuary', 'monster_sw', 'packet_pubMsg', 'packet_privMsg',
 		'forbidden_map', 'perfect_hidden', 'player_muted', 'slaving_monster', 'unknown_buffed_me', 'unknown_used_skill_me',
 		'passwd_reset'
