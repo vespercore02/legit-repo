@@ -410,7 +410,7 @@ sub detectGM_analyseSkillCaster {
 					&core_eventsReaction('unknown_buffed_me');
 					return;
 				}
-			} elsif ($args->{skillID} == 476) { # remo��o total
+			} elsif ($args->{skillID} == 476) { # Full Strip
 					error sprintf("Unknown Player %s (%s) gave you %s! Disconnecting...\n", $castername->{name}, unpack("V", $args->{sourceID}), $skillname), "koreShield_detect";
 					&core_eventsReaction('fullstripped');
 					return; 
@@ -420,13 +420,13 @@ sub detectGM_analyseSkillCaster {
 				return;
 			}
 		} else { # ground skills
-			if ($args->{skillID} == 70) { # santu�rio
+			if ($args->{skillID} == 70) { # Sanctuary
 				my %skill_cast_pos;
 				($skill_cast_pos{x}, $skill_cast_pos{y}) = ($args->{x}, $args->{y});
 				if (&detectGM_analyseSkillCaster_isInsideSanctuary(\%skill_cast_pos)) {
 					&core_eventsReaction('monster_sanctuary');
 				}
-			} elsif ($args->{skillID} == 12) { # escudo m�gico
+			} elsif ($args->{skillID} == 12) { # Safety Wall
 				my %skill_cast_pos;
 				($skill_cast_pos{x}, $skill_cast_pos{y}) = ($args->{x}, $args->{y});
 				if (&detectGM_analyseSkillCaster_isInsideSW(\%skill_cast_pos)) {
