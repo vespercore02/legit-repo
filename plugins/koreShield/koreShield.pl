@@ -929,7 +929,7 @@ sub core_mapChange_post {
 		error("Teleported to the same cell by disconnecting...\n", "koreShield_detect");
 		&core_eventsReaction('forced_teleport_same_cell');
 	} elsif (!existsInList('NPC', AI::action()) && !$detectGM_safeTeleport && time > $detectGM_actorTpInfo{npctalk} && !$ai_v{npc_talk}{talk}) {
-		error("Unauthorized teleportation, disconnecting...", "koreShield_detect");
+		error("Unauthorized teleportation, disconnecting...\n", "koreShield_detect");
 		&core_eventsReaction('forced_teleport');
 	}
 	
