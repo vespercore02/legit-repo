@@ -950,7 +950,7 @@ sub core_mapServerInfo {
 }
 
 sub core_Unload {
-	error("Unloading plugin...", "koreShield");
+	error("Unloading plugin...\n", "koreShield");
 	$bus->onMessageReceived->remove($bus_server) if $bus_server;
 	core_SafeUnload();
 	undef $bus_server;
@@ -1005,7 +1005,7 @@ sub core_eventsReaction {
 
 		#message "someone was harmed - koreShield";
 		if ($bus_args->{map}) {
-			warning "adding map ".$bus_args->{map}." to dangerous list \n";
+			warning "adding map ".$bus_args->{map}." to dangerous list\n";
 			$ping_dangerousMaps{$bus_args->{map}} = time;
 		}
 
@@ -1031,7 +1031,7 @@ sub core_eventsReaction {
 			$args{map} = $core_map;
 		}
 		
-		warning "adding map ".$core_map."to dangerous list \n";
+		warning "adding map ".$core_map." to dangerous list\n";
 		$ping_dangerousMaps{$core_map} = time;
 		
 		$args{server} = $config{master};

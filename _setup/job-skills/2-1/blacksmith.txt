@@ -23,7 +23,7 @@ useSelf_skill BS_OVERTHRUST {
 # Power Maximize Activate
 useSelf_skill BS_MAXIMIZE {
     lvl 5
-    sp > 90
+    sp >= 50%
     onAction Attack
     whenStatusInactive BS_MAXIMIZE
     inLockOnly 1
@@ -34,12 +34,13 @@ useSelf_skill BS_MAXIMIZE {
 #Power Maximize Deactivate
 useSelf_skill BS_MAXIMIZE {
     lvl 5
-    sp < 15
+    sp <= 15%
     whenStatusActive BS_MAXIMIZE
     inLockOnly 1
     notWhileSitting 1
     notInTown 1
 }
+
 
 
 # Weapon Perfection

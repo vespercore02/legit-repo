@@ -32,12 +32,6 @@ automacro TalkToFinalTester_Thief {
 			log jobQuest was set to: SetThiefQuest
 			do conf route_randomWalk 1
 			do conf attackAuto 2
-			#do conf statsAddAuto 1
-			#do conf statsAddAuto_list 10 str, 10 agi, 10 dex, 20 str, 10 vit, 30 agi, 20 dex, 40 str, 60 agi, 30 dex, 30 vit
-			#do conf statsAddAuto_dontUseBonus 1
-			#do conf statsAdd_over_99 1
-			#do conf skillsAddAuto 1
-			#do conf skillsAddAuto_list NV_BASIC 9, TF_DOUBLE 5, TF_MISS 5, TF_STEAL 10, TF_DOUBLE 5, TF_MISS 5
 		]
 	}
 	timeout 120
