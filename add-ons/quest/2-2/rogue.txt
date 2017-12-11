@@ -15,12 +15,13 @@ automacro AddSkillPoints {
 		[
 			do conf -f jobQuest none
 			do conf skillsAddAuto 1
-			do conf skillsAddAuto_list NV_BASIC 9, TF_DOUBLE 10, TF_MISS 10, TF_STEAL 10, TF_HIDING 10, TF_POISON 8, TF_DETOXIFY 1
+			do conf skillsAddAuto_list NV_BASIC 9, TF_DOUBLE 10, TF_MISS 10, TF_STEAL 10, TF_HIDING 10, TF_POISON 9, TF_DETOXIFY 1
 		]
 	}
 }
 
 automacro Thief50 {
+	QuestInactive 2020
 	JobID 6
 	JobLevel = 50
 	exclusive 1
@@ -195,7 +196,7 @@ automacro farmYellowHerb {
 	run-once 1
 	call {
 		do respawn
-		do conf jobQuest QuestItems
+		do conf jobQuest GiveQuestItems
 		release CheckQuestItems
 	}
 }
@@ -206,7 +207,7 @@ automacro farmShell {
 	run-once 1
 	call {
 		do respawn
-		do conf jobQuest QuestItems
+		do conf jobQuest GiveQuestItems
 	 	release CheckQuestItems
 	}
 }
@@ -217,7 +218,7 @@ automacro farmLeg {
 	run-once 1
 	call {
 		do respawn
-		do conf jobQuest QuestItems
+		do conf jobQuest GiveQuestItems
 		release CheckQuestItems
 	}
 }
@@ -228,7 +229,7 @@ automacro farmFootskin {
 	run-once 1
 	call {
 		do respawn
-		do conf jobQuest QuestItems
+		do conf jobQuest GiveQuestItems
 		release CheckQuestItems
 	}
 }
@@ -236,6 +237,21 @@ automacro farmFootskin {
 automacro GiveQuestItems {
 	QuestActive 2020
 	NpcNear /Mr. Smith/
+	ConfigKey jobQuest GiveQuestItems
+	InMap in_rogue
+	Zeny > 9999
+	exclusive 1
+	call {
+		do move in_rogue &rand(370,373) &rand(20,24)
+		do talk $.NpcNearLastBinId
+	}
+	timeout 30
+}
+
+automacro GiveQuestItems_Retake {
+	QuestActive 2020
+	NpcNotNear /Mr. Smith/
+	ConfigKey jobQuest GiveQuestItems
 	InMap in_rogue
 	Zeny > 9999
 	exclusive 1
