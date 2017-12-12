@@ -24,6 +24,21 @@ macro setJobQuest1 {
 	}
 }
 
+macro setJobQuest2 {
+	log chosens job $.param[0]
+	switch ($.param[0]) {
+		case (== priest) {
+			include on priest.txt
+		}
+		case (== rogue) {
+			include on rogue.txt
+		}
+		else {
+			log specified job was not on the list...
+		}
+	}
+}
+
 macro setStats1 {
 	log chosens stats $.param[0]
 	switch ($.param[0]) {
@@ -51,21 +66,6 @@ macro setStats1 {
 		}
 		else {
 			log none was specified...
-		}
-	}
-}
-
-macro setJobQuest2 {
-	log chosens job $.param[0]
-	switch ($.param[0]) {
-		case (== priest) {
-			include on priest.txt
-		}
-		case (== rogue) {
-			include on rogue.txt
-		}
-		else {
-			log specified job was not on the list...
 		}
 	}
 }
