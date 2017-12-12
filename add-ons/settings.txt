@@ -4,6 +4,7 @@
 #_____________________________________________________________________
 
 macro setJobQuest1 {
+	log chosens job $.param[0]
 	switch ($.param[0]) {
 		case (== acolyte) {
 			include on acolyte.txt
@@ -55,7 +56,7 @@ macro setStats1 {
 }
 
 macro setJobQuest2 {
-	log $.param[0]
+	log chosens job $.param[0]
 	switch ($.param[0]) {
 		case (== priest) {
 			include on priest.txt
