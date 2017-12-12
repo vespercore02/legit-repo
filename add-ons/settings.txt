@@ -3,12 +3,108 @@
 # Commands
 #_____________________________________________________________________
 
-macro setMyReceiver {
-	$receiver = none
-	do conf rodexReceiver $receiver
+macro setJobQuest1 {
+	switch ($.param[0]) {
+		case (== acolyte) {
+			include on acolyte.txt
+		}
+		case (== archer) {
+			include on archer.txt
+		}
+		case (== swordsman) {
+			include on swordsman.txt
+		}
+		case (== thief) {
+			include on thief.txt
+		}
+	}
+	else {
+		log specified job was not on the list...
+	}
 }
 
-macro setFarmer {
+macro setStats1 {
+	log chosens stats $.param[0]
+	switch ($.param[0]) {
+		case (== swordsman) {
+			[
+				do conf statsAddAuto 1
+				do conf statsAddAuto_list 20 str, 20 vit, 20 dex, 30 vit, 30 dex, 50 str, 30 agi
+				do conf statsAddAuto_dontUseBonus 0
+				do conf statsAdd_over_99 0
+				
+				do conf skillsAddAuto 1
+				do conf skillsAddAuto_list SM_SWORD 1, SM_TWOHAND 10, SM_RECOVERY 10, SM_BASH 10, SM_PROVOKE 5, SM_MAGNUM 3, SM_ENDURE 10
+			]
+		}
+		case (== thief) {
+			[
+				do conf statsAddAuto 1
+				do conf statsAddAuto_list 30 str, 30 dex, 60 agi, 30 vit
+				do conf statsAddAuto_dontUseBonus 0
+				do conf statsAdd_over_99 0
+				
+				do conf skillsAddAuto 1
+				do conf skillsAddAuto_list TF_DOUBLE 10, TF_MISS 10, TF_STEAL 10, TF_HIDING 10, TF_POISON 8, TF_DETOXIFY 1
+			]
+		}
+		else {
+			log none was specified...
+		}
+	}
+}
+
+macro setJobQuest2 {
+	log $.param[0]
+	switch ($.param[0]) {
+		case (== priest) {
+			include on priest.txt
+		}
+		case (== rogue) {
+			include on rogue.txt
+		}
+		else {
+			log specified job was not on the list...
+		}
+	}
+}
+
+macro setStats2 {
+	log chosens stats $.param[0]
+	switch ($.param[0]) {
+		case (== knight) {
+			[
+				do conf statsAddAuto 1
+				do conf statsAddAuto_list 20 str, 20 vit, 20 dex, 30 vit, 30 dex, 50 str, 30 agi
+				do conf statsAddAuto_dontUseBonus 0
+				do conf statsAdd_over_99 0
+				
+				do conf skillsAddAuto 0
+				do conf skillsAddAuto_list 
+			]
+		}
+		case (== rogue) {
+			[
+				do conf statsAddAuto 1
+				do conf statsAddAuto_list 30 str, 30 dex, 60 agi, 30 vit
+				do conf statsAddAuto_dontUseBonus 0
+				do conf statsAdd_over_99 0
+				
+				do conf skillsAddAuto 0
+				do conf skillsAddAuto_list 
+			]
+		}
+		else {
+			log none was specified...
+		}
+	}
+}
+
+macro sendRodex {
+	do conf rodexReceiver $.param[0]
+}
+
+macro setMinimal {
 	log === Set Defaults === =
 	[
 		do conf autoResponse 1
@@ -105,105 +201,5 @@ macro randomMOD {
 	}
 }
 
-macro setStats {
-	switch ($.job) {
-		case (== Archer) {	
-			[
-				do conf statsAddAuto 1
-				do conf statsAddAuto_list 20 agi, 20 dex, 10 int, 40 agi, 40 dex, 30 vit, 30 int, 80 agi, 40 luk
-				do conf statsAddAuto_dontUseBonus 1
-				do conf statsAdd_over_99 1
-				
-				do conf skillsAddAuto 1
-				do conf skillsAddAuto_list
-			]
-		}
-		case (== Acolyte) {	
-			[
-				do conf statsAddAuto 1
-				do conf statsAddAuto_list 20 agi, 20 dex, 40 agi, 40 dex, 30 vit, 10 int, 80 agi, 80 dex, 40 luk, 30 int
-				do conf statsAddAuto_dontUseBonus 1
-				do conf statsAdd_over_99 1
-				
-				do conf skillsAddAuto 0
-				do conf skillsAddAuto_list AL_HEAL 5, AL_INCAGI 5, AL_DP 5, AL_BLESSING 10, AL_INCAGI 10, AL_RUWACH 1, AL_TELEPORT 2, AL_DEMONBANE 5, AL_WARP 2, AL_ANGELUS 10 
-			]
-		}
-		case (== Swordsman) {	
-			[
-				do conf statsAddAuto 1
-				do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 40 agi, 30 str, 40 dex, 30 vit, 60 str, 80 agi
-				do conf statsAddAuto_dontUseBonus 1
-				do conf statsAdd_over_99 1
-				
-				do conf skillsAddAuto 1
-				do conf skillsAddAuto_list SM_SWORD 1, SM_TWOHAND 10,  SM_RECOVERY 10, SM_BASH 10, SM_PROVOKE 5, SM_MAGNUM 4, SM_ENDURE 10
-			]
-		}
-		case (== Priest) {
-			[
-				do conf statsAddAuto 1
-				do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
-				do conf statsAddAuto_dontUseBonus 1
-				do conf statsAdd_over_99 1
-				
-				do conf skillsAddAuto 1 
-				do conf skillsAddAuto_list PR_MACEMASTERY 10, PR_IMPOSITIO 5, PR_KYRIE 10
-			]	
-		}
-		case (== Monk) {
-			[
-				do conf statsAddAuto 1
-				do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 10 int, 40 agi, 30 str, 40 dex, 30 vit, 30 int, 60 str, 80 agi
-				do conf statsAddAuto_dontUseBonus 1
-				do conf statsAdd_over_99 1
-				
-				do conf skillsAddAuto 1 
-				do conf skillsAddAuto_list none
-			]
-		}
-		case (== Thief) {
-			[
-				do conf statsAddAuto 1
-				do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 40 agi, 30 str, 40 dex, 30 vit, 60 str, 80 agi, 20 luk
-				do conf statsAddAuto_dontUseBonus 0
-				do conf statsAdd_over_99 0
-				
-				do conf skillsAddAuto 1 
-				do conf skillsAddAuto_list TF_DOUBLE 10, TF_MISS 10, TF_STEAL 10, TF_HIDING 10, TF_POISON 9, TF_DETOXIFY 1
-			]
-		}
-		case (== Rogue) {
-			[
-				do conf statsAddAuto 1
-				do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 40 agi, 30 str, 40 dex, 30 vit, 60 str, 80 agi, 20 luk
-				do conf statsAddAuto_dontUseBonus 1
-				do conf statsAdd_over_99 1
-				
-				do conf skillsAddAuto 1 
-				do conf skillsAddAuto_list RG_SNATCHER 10
-			]
-		}
-		else {
-			do conf statsAddAuto 0
-			do conf statsAddAuto_list none
-			do conf statsAddAuto_dontUseBonus 0
-			do conf statsAdd_over_99 0
-			
-			do conf skillsAddAuto 0
-			do conf skillsAddAuto_list none
-		}
-	}
-}
 
-macro setThief {
-	[
-		do conf statsAddAuto 1
-		do conf statsAddAuto_list 20 agi, 20 str, 20 dex, 40 agi, 30 str, 40 dex, 60 str, 80 agi, 20 luk
-		do conf statsAddAuto_dontUseBonus 0
-		do conf statsAdd_over_99 0
-		
-		do conf skillsAddAuto 1 
-		do conf skillsAddAuto_list TF_DOUBLE 10, TF_MISS 10, TF_STEAL 10, TF_HIDING 10, TF_POISON 9, TF_DETOXIFY 1
-	]
-}
+

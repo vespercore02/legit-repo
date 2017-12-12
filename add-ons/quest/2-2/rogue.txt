@@ -13,15 +13,15 @@ automacro AddSkillPoints {
 			log =========================================================
 		]
 		[
-			do conf -f jobQuest none
+			do conf jobQuest ChangeToRogue
 			do conf skillsAddAuto 1
 			do conf skillsAddAuto_list NV_BASIC 9, TF_DOUBLE 10, TF_MISS 10, TF_STEAL 10, TF_HIDING 10, TF_POISON 9, TF_DETOXIFY 1
 		]
 	}
 }
 
-automacro Thief50 {
-	QuestInactive 2020
+automacro ChangeToRogue {
+	ConfigKey jobQuest ChangeToRogue
 	JobID 6
 	JobLevel = 50
 	exclusive 1
@@ -45,7 +45,7 @@ automacro Thief50 {
 			]
 			
 			do move morocc
-			do conf -f jobQuest MoveTojobQuest
+			do conf jobQuest MoveTojobQuest
 			
 			if ($.map == morocc) {
 				log === Saving to Morocc === 
@@ -53,20 +53,18 @@ automacro Thief50 {
 				do talknpc 156 97 c r0 n
 				do conf saveMap morocc
 			}
-			
-			lock Thief50
 		
 		:AlreadyOnMorocc
-			do conf -f jobQuest MoveTojobQuest
+			do conf jobQuest MoveTojobQuest
 			do move morocc &rand(150,154) &rand(91,95)
 			do talknpc 156 97 c r0 n
 			do conf saveMap morocc
-			lock Thief50
 	}
 	timeout 60
 }
 
 automacro MoveTojobQuest {
+	#QuestInactive 2017,2020,2022,2023,2024,2026
 	ConfigKey jobQuest MoveTojobQuest
 	NpcNotNear /Rogue Guildsman/
 	InMap morocc,in_rogue
@@ -78,12 +76,12 @@ automacro MoveTojobQuest {
 		do move in_rogue &rand(361,366) &rand(112,117)
 		do conf jobQuest TalkToGuildsman
 	}
-	timeout 30
+	timeout 60
 }
 
 automacro TalkToGuildsman {
+	#QuestInactive 2017,2020,2022,2023,2024,2026
 	ConfigKey jobQuest TalkToGuildsman
-	QuestInactive 2017
 	NpcNear /Rogue Guildsman/
 	InMap in_rogue
 	JobID 6
@@ -103,11 +101,13 @@ automacro TalkToGuildsman {
 		do talk resp 2
 		do talk resp 1
 		do talk resp 0
+		conf jobQuest TalkToMrSmith
 	}
-	timeout 30
+	timeout 60
 }
 
 automacro TalkToMrSmith {
+	ConfigKey jobQuest TalkToMrSmith
 	QuestActive 2017
 	NpcNotNear /Mr. Smith/
 	InMap in_rogue
@@ -115,12 +115,12 @@ automacro TalkToMrSmith {
 	JobLevel = 50
 	exclusive 1
 	macro_delay 1
-	run-once 1
 	call {
 		do move in_rogue &rand(370,373) &rand(20,24)
 		do talk &npc(376 23) #Smith
 		do conf jobQuest QuestItems
 	}
+	timeout 60
 }
 
 automacro QuestItems {
@@ -131,6 +131,20 @@ automacro QuestItems {
 	exclusive 1
 	macro_delay 2
 	call {
+		[
+			do iconf 508 0 0 0
+			do iconf 935 0 0 0
+			do iconf 940 0 0 0
+			do iconf 948 0 0 0
+		]
+		
+		[
+			do pconf 508 2
+			do pconf 935 2 
+			do pconf 940 2
+			do pconf 948 2
+		]
+	
 		if (&invamount(Yellow Herb) <= 9) goto farmYellowHerb
 		if (&invamount(Shell) <= 9) goto farmShell
 		if (&invamount(Grasshopper's Leg) <= 9) goto farmLeg
@@ -245,21 +259,7 @@ automacro GiveQuestItems {
 		do move in_rogue &rand(370,373) &rand(20,24)
 		do talk $.NpcNearLastBinId
 	}
-	timeout 30
-}
-
-automacro GiveQuestItems_Retake {
-	QuestActive 2020
-	NpcNotNear /Mr. Smith/
-	ConfigKey jobQuest GiveQuestItems
-	InMap in_rogue
-	Zeny > 9999
-	exclusive 1
-	call {
-		do move in_rogue &rand(370,373) &rand(20,24)
-		do talk $.NpcNearLastBinId
-	}
-	timeout 30
+	timeout 60
 }
 
 automacro FindNPC {
@@ -351,7 +351,6 @@ automacro Labyrinth {
 
 automacro RetakeLabyrinth {
 	QuestActive 2026
-	NotInMap in_rogue
 	JobID 6
 	JobLevel = 50
 	CurrentHP >= 80%
