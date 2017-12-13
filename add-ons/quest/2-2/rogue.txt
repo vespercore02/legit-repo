@@ -109,11 +109,25 @@ automacro TalkToGuildsman {
 	timeout 60
 }
 
+automacro GoToMrSmith {
+	QuestActive 2017
+	NpcNotNear /Smith/
+	InMap in_rogue
+	JobID 6
+	JobLevel = 50
+	exclusive 1
+	macro_delay 1
+	call {
+		do move in_rogue &rand(370,373) &rand(20,24)
+	}
+	timeout 60
+}
+
 automacro TalkToMrSmith {
 	ConfigKey jobQuest TalkToMrSmith
 	QuestActive 2017
-	NpcNear /Mr. Smith/
-	#InMap in_rogue
+	NpcNear /Smith/
+	InMap in_rogue
 	JobID 6
 	JobLevel = 50
 	exclusive 1
@@ -122,19 +136,6 @@ automacro TalkToMrSmith {
 		do move in_rogue &rand(370,373) &rand(20,24)
 		do talk &npc(376 23) #Smith
 		do conf jobQuest QuestItems
-	}
-	timeout 60
-}
-
-automacro GoToMrSmith {
-	QuestActive 2017
-	NpcNotNear /Mr. Smith/
-	JobID 6
-	JobLevel = 50
-	exclusive 1
-	macro_delay 1
-	call {
-		do move in_rogue &rand(370,373) &rand(20,24)
 	}
 	timeout 60
 }
