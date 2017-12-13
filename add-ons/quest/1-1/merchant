@@ -96,6 +96,7 @@ automacro merchantSNis {
 		do conf -f QuestSN $serial
 		do conf -f QuestPart MerchantinputSN
     }
+	timeout 30
 }
 automacro merchantSNof {
     NpcMsg /of the package is/
@@ -158,10 +159,10 @@ automacro MerchantQuestDeliBox {
 
 macro Deliver {
 	
-		if (&config(QuestSN) == prontera ) goto prt
-		if (&config(QuestSN) == geffen ) goto gef
-		if (&config(QuestSN) == morocc ) goto mrc
-		if (&config(QuestSN) == byalan ) goto byl
+		if (&config(QuestSN) = prontera ) goto prt
+		if (&config(QuestSN) = geffen ) goto gef
+		if (&config(QuestSN) = morocc ) goto mrc
+		if (&config(QuestSN) = byalan ) goto byl
 		
 		:prt
 		do move prontera 239 47 
