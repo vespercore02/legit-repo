@@ -14,3 +14,11 @@ attackSkillSlot Steal {
 	inLockOnly 1
 	notInTown 1
 }
+
+useSelf_skill Hiding {
+	lvl 10
+	sp > 10%
+	aggressives >= 3
+	stopWhenHit 1
+	inLockOnly 1
+}

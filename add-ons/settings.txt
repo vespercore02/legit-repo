@@ -202,5 +202,37 @@ macro randomMOD {
 	}
 }
 
+macro setGrinding {
+	if ($.param[0] == on) {
+		include on grinding-spot.txt
+	} else {
+		include off grinding-spot.txt
+	}
+}
 
+macro manualGetRodex {
+	do rodex open
+	do rodex refresh
 
+	if (count_rodex() < 1) goto stopRodex
+	if (count_rodex() > 0) goto receiveRodex
+
+	:stopRodex
+		log No rodex mail available
+		do rodex close
+		stop
+	:receiveRodex
+		log It's mail time!!!
+		$i = 0
+		while ($i < count_rodex()) {
+			log You are opening Mail ID: check_rodex_id($i)
+			$currentID = check_rodex_id($i)
+			do rodex read $currentID
+			do rodex getitems
+			do rodex getzeny
+			do rodex delete $currentID
+			$i++
+		}
+		do rodex close
+		stop
+}
