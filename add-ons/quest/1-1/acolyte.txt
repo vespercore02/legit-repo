@@ -3,12 +3,11 @@ automacro LeaveTrainingGround_Acolyte {
 	InMap new_1-3
 	JobLevel = 10
 	exclusive 1
-	run-once 1
 	macro_delay 2
 	call {
 		[
-			do conf route_randomWalk 0
-			do conf attackAuto -1
+		    do conf route_randomWalk 0
+		    do conf attackAuto -1
 		]
 		do move new_1-4 99 &rand(19,22)
 		do conf jobQuest TalkToFinalTester_Acolyte
@@ -22,8 +21,7 @@ automacro TalkToFinalTester_Acolyte {
 	NpcNear /Final Tester/
 	ConfigKey jobQuest TalkToFinalTester_Acolyte
 	exclusive 1
-	run-once 1
-	macro_delay 20
+	macro_delay 2
 	call {
 		[
 			do conf lockMap none
@@ -31,7 +29,7 @@ automacro TalkToFinalTester_Acolyte {
 			do conf autoResponse 1
 			do conf autoTalkCont 1
 		]
-		do talknpc 100 29 c w1 c w1 c w1 c w1 c w1 c r0 c w1 r1 c w1 c w1 c w1 c w1 c
+		do talknpc 100 29 r0 r1
 		log TalkToFinalTester_Acolyte: Quest Done
 	}
 }
@@ -49,7 +47,7 @@ automacro SetAcolyteQuest {
 		do talk resp 0
 		do conf jobQuest FindPriest
 	}
-}
+}  
 
 automacro FindPriest {
 	QuestActive 1001, 1002, 1003
@@ -67,14 +65,9 @@ automacro FindPriest {
 		]
 		
 		switch ($.QuestActiveLastID) {
-			case (= 1001) { 
-				call TalkWithPriest "prt_fild03 365 255"
-			}
-			case (= 1002) { 
-				call TalkWithPriest "moc_fild07 39 354"
-			}
-			case (= 1003) {
-				call TalkWithPriest "prt_fild00 207 221"
+			case (= 1001) call TalkWithPriest "prt_fild03" "365 255"
+			case (= 1002) call TalkWithPriest "moc_fild07" "41 355"
+			case (= 1003) call TalkWithPriest "prt_fild00" "208 218"
 			}
 		}
 	}
@@ -82,21 +75,12 @@ automacro FindPriest {
 }
 
 macro TalkWithPriest {
-	do move $.param[0]
-	switch ($.QuestActiveLastID) {
-		case (= 1001) {
-			do talk &npc(365 255)
-			do conf jobQuest GoBackToChurch
-		}
-		case (= 1002) {
-			do talk &npc(41 355)
-			do conf jobQuest GoBackToChurch
-		}
-		case (= 1003) {
-			do talk &npc(208 218)
-			do conf jobQuest GoBackToChurch
-		}
-	}
+    # $.param[0] has the city
+	# $.param[1] has the coordinates
+	
+	do move $.param[0] $.param[1] &rand(1,4)
+	do talk &npc($.param[1])
+	do conf jobQuest GoBackToChurch
 	#set exclusive 0
 	pause 5
 	stop
