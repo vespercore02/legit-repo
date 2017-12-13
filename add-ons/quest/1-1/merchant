@@ -59,6 +59,7 @@ automacro TalktoFinalTester {
 automacro MerchantQuestStart {
 	InMap alberta_in
 	ConfigKey QuestPart MerchantQuest
+	exclusive 1
 	run-once 1
 	macro_delay 1
 	call {
@@ -66,6 +67,17 @@ automacro MerchantQuestStart {
 		do talk resp 0
 		do talk resp 0
 		do talk resp 0
+		do conf QuestPart MerchantQuestRetalk
+	}
+	timeout 30
+}
+
+automacro MerchantQuestRetalk {
+	InMap alberta_in
+	ConfigKey QuestPart MerchantQuestRetalk
+	run-once 1
+	macro_delay 1
+	call {
 		do talknpc 53 43
 		log $.NpcMsgLastMsg
 	}
