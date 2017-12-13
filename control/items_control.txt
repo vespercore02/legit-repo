@@ -108,7 +108,7 @@ Apple 0 0 1
 Carrot 0 0 1
 Banana 0 0 1
 Green Herb 0 0 1
-Yellow Herb 0 1 0
+Yellow Herb 0 0 0
 Red Herb 0 0 1
 
 
@@ -1813,3 +1813,6 @@ Trunk 0 0 0
 Barren Trunk 0 0 0
 Solid Trunk 0 0 0
 Fine-grained Trunk 0 0 0
+Shell 0 0 0
+Grasshopper's Leg 0 0 0
+Bear's Footskin 0 0 0

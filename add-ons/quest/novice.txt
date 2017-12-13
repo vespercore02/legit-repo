@@ -233,13 +233,28 @@ automacro HitTheGrounds {
 	}
 }
 
-automacro RespawnToGrounds {
+automacro BackToTraining {
 	JobID 0
-	JobLevel < 10
+	JobLevel <= 9
 	InMap new_1-4
 	exclusive 1
 	call {
 		do respawn
 	}
 	timeout 10
+}
+
+automacro FreeNoviceSkillPoints {
+	FreeSkillPoints > 0
+	JobID 0
+	JobLevel = 10
+	exclusive 1
+	run-once 1
+	call {
+		log === I have extra skill points ===
+		[
+			do conf skillsAddAuto 1
+			do conf skillsAddAuto_list NV_BASIC 9
+		]
+	}
 }

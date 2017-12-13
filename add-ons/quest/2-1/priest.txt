@@ -11,7 +11,6 @@ automacro FreeSkillPoints_Priest {
 			log =========================================================
 		]
 		[
-			do conf -f jobQuest none
 			do conf lockMap none
 			do conf route_randomWalk 0
 			do conf teleportAuto_idle 0
@@ -27,6 +26,7 @@ automacro MoveToJobQuest_Priest {
 	JobID 4
 	JobLevel = 50
 	exclusive 1
+	run-once 1
 	call {
 		[
 			do conf lockMap none
@@ -35,7 +35,6 @@ automacro MoveToJobQuest_Priest {
 		]
 		do move prt_church 16 &rand(33,35)
 	}
-	timeout 10
 }
 
 automacro TalkToHighBishop {
@@ -69,7 +68,7 @@ automacro TalkToPeter {
 		do talk resp 0
 		do talk resp 0
 	}
-	timeout 60
+	timeout 10
 }
 
 automacro EnduranceTest1 {
@@ -112,7 +111,6 @@ automacro FaithTest {
 	JobID 4
 	JobLevel = 50
 	exclusive 1
-	run-once 1
 	macro_delay 20
 	call {
 		do move 168 45
@@ -129,6 +127,7 @@ automacro FaithTest {
 		do move 168 179
 		do conf jobQuest EnduranceTest2
 	}
+	timeout 120
 }
 
 automacro EnduranceTest2 {
