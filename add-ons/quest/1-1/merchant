@@ -191,7 +191,8 @@ macro Deliver {
 			do conf -f QuestPart DeliveryDone
 		}
 		case (== byalan) {
-			do move izlu2dun 107 33 
+			
+			do move izlu2dun 106 58 
 			pause 4
 			do talknpc 106 58
 			do talk resp 0
