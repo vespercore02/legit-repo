@@ -15,17 +15,23 @@ automacro AddSkillPoints {
 		[
 			do conf jobQuest ChangeToRogue
 			do conf skillsAddAuto 1
-			do conf skillsAddAuto_list NV_BASIC 9, TF_DOUBLE 10, TF_MISS 10, TF_STEAL 10, TF_HIDING 10, TF_POISON 9, TF_DETOXIFY 1
+			do conf skillsAddAuto_list NV_BASIC 9, TF_DOUBLE 10, TF_MISS 10, TF_STEAL 10, TF_HIDING 10, TF_POISON 8, TF_DETOXIFY 1
 		]
 	}
 }
 
 automacro ChangeToRogue {
-	ConfigKey jobQuest ChangeToRogue
+	QuestInactive 2017
+    QuestInactive 2018
+    QuestInactive 2022
+    QuestInactive 2023
+    QuestInactive 2024
+    QuestInactive 2026
 	JobID 6
 	JobLevel = 50
 	exclusive 1
 	macro_delay 1
+	run-once 1
 	call {
 		
 		if ($.map != morocc) goto SaveToMorocc
@@ -60,11 +66,9 @@ automacro ChangeToRogue {
 			do talknpc 156 97 c r0 n
 			do conf saveMap morocc
 	}
-	timeout 60
 }
 
 automacro MoveTojobQuest {
-	#QuestInactive 2017,2020,2022,2023,2024,2026
 	ConfigKey jobQuest MoveTojobQuest
 	NpcNotNear /Rogue Guildsman/
 	InMap morocc,in_rogue
@@ -80,7 +84,6 @@ automacro MoveTojobQuest {
 }
 
 automacro TalkToGuildsman {
-	#QuestInactive 2017,2020,2022,2023,2024,2026
 	ConfigKey jobQuest TalkToGuildsman
 	NpcNear /Rogue Guildsman/
 	InMap in_rogue
@@ -106,10 +109,24 @@ automacro TalkToGuildsman {
 	timeout 60
 }
 
+automacro GoToMrSmith {
+	QuestActive 2017
+	NpcNotNear /Smith/
+	InMap in_rogue
+	JobID 6
+	JobLevel = 50
+	exclusive 1
+	macro_delay 1
+	call {
+		do move in_rogue &rand(370,373) &rand(20,24)
+	}
+	timeout 60
+}
+
 automacro TalkToMrSmith {
 	ConfigKey jobQuest TalkToMrSmith
 	QuestActive 2017
-	NpcNotNear /Mr. Smith/
+	NpcNear /Smith/
 	InMap in_rogue
 	JobID 6
 	JobLevel = 50
@@ -351,6 +368,7 @@ automacro Labyrinth {
 
 automacro RetakeLabyrinth {
 	QuestActive 2026
+	NotInMap in_rogue
 	JobID 6
 	JobLevel = 50
 	CurrentHP >= 80%
@@ -379,7 +397,7 @@ automacro RetakeLabyrinth {
 			}
 		}
 	}
-	timeout 60
+	timeout 20
 }
 
 automacro FinalStep {

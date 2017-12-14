@@ -52,3 +52,7 @@ Trunk 0
 Barren Trunk 0
 Solid Trunk 0
 Fine-grained Trunk 0
+Yellow Herb 2
+Shell 2
+Grasshopper's Leg 2
+Bear's Footskin 2
