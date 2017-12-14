@@ -1,5 +1,14 @@
 # legit-repo
 
+Credits to:
+```
+adraaawr
+djkstra
+EnzoMachiavelli
+vespercore02
+Nipodemos
+```
+
 eventMacro Commands:
 ```
 setJobQuest1 <1stjob>
