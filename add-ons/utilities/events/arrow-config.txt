@@ -30,3 +30,15 @@ automacro equip_FireArrow {
 		do conf attackEquip_arrow $.InInventoryLast
 	}
 }
+
+
+automacro equip_IronArow {
+	JobID 3, 11
+	InInventory "Iron Arrow" > 0
+	priority 3
+	timeout 120
+	call {
+		do eq $.InInventoryLast
+		do conf attackEquip_arrow $.InInventoryLast
+	}
+}
