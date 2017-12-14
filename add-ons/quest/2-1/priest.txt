@@ -162,7 +162,7 @@ automacro MoralTest {
 }
 
 automacro TalkWithCecilia {
-	QuestActive 8011, 8012, 8013
+	QuestActive 8011, 8012, 8013, 8014
 	NpcNear /Sister Cecilia/
 	InMap prt_church
 	JobID 4
