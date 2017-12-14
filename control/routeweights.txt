@@ -38,5 +38,6 @@ moc_para01 10000
 prt_fild08a 10000
 
 # Add your map weights here. Format: <mapname> <weight>
-geffen 10000
-prontera 10000
+#geffen 10000
+#prontera 10000
+#gef_fild10 10000

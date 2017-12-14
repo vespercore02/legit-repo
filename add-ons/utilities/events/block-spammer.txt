@@ -1,11 +1,11 @@
 automacro BlockSpammer_PubMsg {
-	PubMsg /(([Bb]+[Uu]+[Yy]+)|([Ss]+[Ee]+[Ll]+))*.*([Zz]+[Ee]+[Nn]+[Yy]+)*.*([Gg]+[Oo]+[Ll]+[Dd]+)*.*([Bb]+[Oo]+[Nn]+[Uu]+[Ss]+)*.*/
+	PubMsg /(b+u+y+|s+e+l+|z+e+n+y+|g+o+l+d+|b+o+n+u+s+)/i
 	call CheckSpamCount_PubMsg
 	timeout 30
 }
 
 automacro BlockSpammer_PrivMsg {
-	PrivMsg /(([Bb]+[Uu]+[Yy]+)|([Ss]+[Ee]+[Ll]+))*.*([Zz]+[Ee]+[Nn]+[Yy]+)*.*([Gg]+[Oo]+[Ll]+[Dd]+)*.*([Bb]+[Oo]+[Nn]+[Uu]+[Ss]+)*.*/
+	PrivMsg /(b+u+y+|s+e+l+|z+e+n+y+|g+o+l+d+|b+o+n+u+s+)/i
 	call CheckSpamCount_PrivMsg
 	timeout 30
 }
