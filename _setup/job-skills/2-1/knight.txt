@@ -1,20 +1,28 @@
 useSelf_skill Twohand Quicken {
     lvl 10
-    sp > 50%
+    sp >= 60
     whenStatusInactive Twohand Quicken
     notInTown 1
     onAction attack
-    timeout 600
+    notWhileSitting 1
+	timeout 60
+   	disabled 0
+	label TwoHand
 }
 
 attackSkillSlot Bowling Bash {
     lvl 10
-    sp > 20%
+    sp > 30
     aggressives >= 3
     monsters
-    inLockOnly 1
-    timeout 5
+	notInTown 1
+	notWhileSitting 1
+   	whenStatusInactive EFST_POSTDELAY
+   	onAction attack
+    timeout #unecessary
     maxUses 5
+   	disabled 0
+	label BowlingBash
 }
 
 attackSkillSlot Pierce {
