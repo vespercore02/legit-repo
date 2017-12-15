@@ -154,53 +154,54 @@ automacro MerchantQuestDeliBox {
 	JobLevel = 10
 	exclusive 1
 	call Deliver
-
 }
 
 macro Deliver {
 	
-		if (&config(QuestSN) = prontera ) goto prt
-		if (&config(QuestSN) = geffen ) goto gef
-		if (&config(QuestSN) = morocc ) goto mrc
-		if (&config(QuestSN) = byalan ) goto byl
+		log &config(QuestDeliverLocation)
 		
-		:prt
-		do move prontera 239 47 
-		do talknpc 248 42
-		log The package was delivered. Go back to Alberta
-		do conf -f QuestPart DeliveryDone
+		$location = &config(QuestDeliverLocation)
 		
-		:gef
-		do move geffen 61 180 
-		pause 4
-		do move geffen_in 169 120 
-		pause 4
-		do talknpc 155 122
-		do move geffen
-		log The package was delivered. It's time to go to Alberta
-		do conf -f QuestPart DeliveryDone
-		
-		:mrc
-		do move morocc 274 269 
-		pause 4
-		do move 144 122 
-		pause 4
-		do talknpc 140 102
-		pause 4
-		do move morocc
-		log The package was delivered. It's time to go to Alberta
-		do conf -f QuestPart DeliveryDone
-		
-		:byl
-		do move izlu2dun 107 33 
-		pause 4
-		do talknpc 106 58
-		do talk resp 0
-		pause 4
-		log The package was delivered. It's time to go to Alberta
-		do conf -f QuestPart DeliveryDone
-		
-	
+		switch ($location) {
+		case (== prontera) {
+			do move prontera 239 47 
+			do talknpc 248 42
+			log The package was delivered. Go back to Alberta
+			do conf -f QuestPart DeliveryDone
+		}
+		case (== geffen) {
+			do move geffen 61 180 
+			pause 4
+			do move geffen_in 169 120 
+			pause 4
+			do talknpc 155 122
+			do move geffen
+			log The package was delivered. It's time to go to Alberta
+			do conf -f QuestPart DeliveryDone
+		}
+		case (== morocc) {
+			do move morocc 274 269 
+			pause 4
+			do move 144 122 
+			pause 4
+			do talknpc 140 102
+			pause 4
+			do move morocc
+			log The package was delivered. It's time to go to Alberta
+			do conf -f QuestPart DeliveryDone
+		}
+		case (== byalan) {
+			do move izlu2dun 106 55 
+			pause 4
+			do talknpc 106 58
+			do talk resp 0
+			pause 4
+			log The package was delivered. It's time to go to Alberta
+			do conf -f QuestPart DeliveryDone
+		}
+		else {
+		}
+	}
 }
 
 automacro MerchantQuestDeliDone {
