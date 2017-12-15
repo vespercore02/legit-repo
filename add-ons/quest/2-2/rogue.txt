@@ -228,7 +228,7 @@ automacro farmYellowHerb {
 	call {
 		do respawn
 		do conf jobQuest GiveQuestItems
-		release CheckQuestItems
+		release QuestItems
 	}
 }
 
@@ -239,7 +239,7 @@ automacro farmShell {
 	call {
 		do respawn
 		do conf jobQuest GiveQuestItems
-	 	release CheckQuestItems
+	 	release QuestItems
 	}
 }
 
@@ -250,7 +250,7 @@ automacro farmLeg {
 	call {
 		do respawn
 		do conf jobQuest GiveQuestItems
-		release CheckQuestItems
+		release QuestItems
 	}
 }
 
@@ -261,7 +261,7 @@ automacro farmFootskin {
 	call {
 		do respawn
 		do conf jobQuest GiveQuestItems
-		release CheckQuestItems
+		release QuestItems
 	}
 }
 
